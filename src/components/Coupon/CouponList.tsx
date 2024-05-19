@@ -6,34 +6,23 @@ import moment from 'moment';
 import { TiEyeOutline } from 'react-icons/ti';
 import ViewModal from '../Modal/ViewModal';
 
-const ContactList = () => {
-  const [contact, setContact] = useState([]);
+const CouponList = () => {
+  const [coupon, setCoupon] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [entriesPerPage, setEntriesPerPage] = useState(10);
 
-  const [isViewModal, setIsViewModal] = useState(false);
-  const [viewModalData, setViewModalData] = useState();
-
-  const handleViewModal = (item) => {
-    setViewModalData(item);
-    setIsViewModal(true);
-  };
-  const closeViewModal = () => {
-    setIsViewModal(false);
-  };
-
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/contacts?page=${page}&limit=${entriesPerPage}`;
+      let url = `/coupons?page=${page}&limit=${entriesPerPage}`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;
       }
 
       const response = await axiosInstance.get(url);
-      setContact(response.data.data.result);
+      setCoupon(response.data.data.result);
       setTotalPages(response.data.data.meta.totalPage);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -62,63 +51,51 @@ const ContactList = () => {
         onEntriesPerPageChange={handleEntriesPerPageChange}
       />
       <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-1 hidden items-center sm:flex">
-          <p className="font-medium">Name</p>
+        <div className="hidden items-center sm:flex">
+          <p className="font-medium">Coupon Code</p>
         </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Phone</p>
+        <div className="flex items-center">
+          <p className="font-medium">Discount Type</p>
         </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Email</p>
+        <div className="flex items-center">
+          <p className="font-medium">Discount Amount</p>
         </div>
-        <div className="col-span-3 flex items-center">
-          <p className="font-medium">Address</p>
+        <div className="flex items-center">
+          <p className="font-medium">Usage Limit</p>
         </div>
 
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Requested Date</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">View</p>
+        <div className="flex items-center">
+          <p className="font-medium">Expire Date</p>
         </div>
       </div>
 
-      {contact.map((item, key) => (
+      {coupon.map((item, key) => (
         <div
           className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           key={key}
         >
-          <div className="col-span-1 hidden items-center sm:flex">
+          <div className="hidden items-center sm:flex">
+            <p className="text-sm text-black dark:text-white">{item.code}</p>
+          </div>
+          <div className="flex items-center">
             <p className="text-sm text-black dark:text-white">
-              {item.full_name}
+              {item.discount_type}
             </p>
           </div>
-          <div className="col-span-1 flex items-center">
-            <p className="text-sm text-black dark:text-white">{item.phone}</p>
-          </div>
-          <div className="col-span-1 flex items-center">
+          <div className=" flex items-center">
             <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
-              {item.email}
+              {item.discount_amount}
             </p>
           </div>
-          <div className="col-span-3 flex items-center">
+          <div className=" flex items-center">
             <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
-              {item.address}
+              {item.usage_limit}
             </p>
           </div>
 
-          <div className="col-span-1 flex items-center">
+          <div className="flex items-center">
             <p className="text-sm text-black dark:text-white">
-              {moment(item?.created_at).format('MMM Do YY')}
-            </p>
-          </div>
-
-          <div className="col-span-1 flex items-center space-x-2">
-            <p
-              className="text-xl text-success cursor-pointer"
-              onClick={() => handleViewModal(item)}
-            >
-              <TiEyeOutline />
+              {moment(item?.expires_at).format('MMM Do YY')}
             </p>
           </div>
         </div>
@@ -128,15 +105,8 @@ const ContactList = () => {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
-      <ViewModal
-        isOpen={isViewModal}
-        title="Contact Details"
-        data={viewModalData}
-        onCancel={closeViewModal}
-        type={'contact'}
-      />
     </div>
   );
 };
 
-export default ContactList;
+export default CouponList;

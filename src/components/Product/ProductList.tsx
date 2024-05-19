@@ -7,8 +7,8 @@ import ConfirmModal from '../Modal/ConfirmModal';
 import ViewModal from '../Modal/ViewModal';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 
-const SizeList = () => {
-  const [size, setSize] = useState([]);
+const ProductList = () => {
+  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -43,7 +43,7 @@ const SizeList = () => {
   };
 
   const handleConfirm = async () => {
-    const res = await axiosInstance.patch(`/sizes/${modalData}`, {
+    const res = await axiosInstance.patch(`/colors/${modalData}`, {
       status: 'approve',
     });
     if (res.data.success) {
@@ -53,7 +53,7 @@ const SizeList = () => {
   };
 
   const handleConfirmSold = async () => {
-    const res = await axiosInstance.patch(`/sizes/${modalData}`, {
+    const res = await axiosInstance.patch(`/colors/${modalData}`, {
       status: 'sold',
     });
     if (res.data.success) {
@@ -64,14 +64,14 @@ const SizeList = () => {
 
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/sizes?page=${page}&limit=${entriesPerPage}`;
+      let url = `/products?page=${page}&limit=${entriesPerPage}`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;
       }
 
       const response = await axiosInstance.get(url);
-      setSize(response.data.data.result);
+      setProducts(response.data.data.result);
       setTotalPages(response.data.data.meta.totalPage);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -105,8 +105,18 @@ const SizeList = () => {
         onEntriesPerPageChange={handleEntriesPerPageChange}
       />
       <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-7 flex items-center">
-          <p className="font-medium">Size</p>
+        <div className="col-span-1 flex items-center">
+          <p className="font-medium">Product Name</p>
+        </div>
+        <div className="col-span-1 flex items-center">
+          <p className="font-medium">Thumbnail</p>
+        </div>
+        <div className="col-span-1 flex items-center">
+          <p className="font-medium">Category</p>
+        </div>
+
+        <div className="col-span-1 flex items-center">
+          <p className="font-medium">Brand</p>
         </div>
 
         <div className="col-span-1 flex items-center">
@@ -114,13 +124,27 @@ const SizeList = () => {
         </div>
       </div>
 
-      {size.map((item, key) => (
+      {products.map((item, key) => (
         <div
           className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           key={key}
         >
-          <div className="col-span-7 hidden items-center sm:flex">
+          <div className="col-span-1 hidden items-center sm:flex">
             <p className="text-sm text-black dark:text-white">{item.name}</p>
+          </div>
+          <div className="col-span-1 hidden items-center sm:flex">
+            <img src={item.image_gallery[0]} alt="" />
+            Thumbnail Will come
+          </div>
+          <div className="col-span-1 hidden items-center sm:flex">
+            <p className="text-sm text-black dark:text-white">
+              {item.category.name}
+            </p>
+          </div>
+          <div className="col-span-1 hidden items-center sm:flex">
+            <p className="text-sm text-black dark:text-white">
+              {item.brand.name}
+            </p>
           </div>
 
           <div className="col-span-1 flex items-center space-x-2">
@@ -180,4 +204,4 @@ const SizeList = () => {
   );
 };
 
-export default SizeList;
+export default ProductList;

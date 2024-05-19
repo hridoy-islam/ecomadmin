@@ -20,6 +20,8 @@ import Brand from './pages/Brand';
 import Categories from './pages/Categories';
 import Size from './pages/Size';
 import Color from './pages/Color';
+import Coupon from './pages/Coupon';
+import Product from './pages/Product';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -80,6 +82,15 @@ function App() {
             <>
               <PageTitle title="Edit Customer Details" />
               <CustomerEdit />
+            </>
+          }
+        />
+        <Route
+          path="dashboard/product"
+          element={
+            <>
+              <PageTitle title="Product List" />
+              <Product />
             </>
           }
         />
@@ -153,72 +164,15 @@ function App() {
         />
 
         <Route
-          path="dashboard/color/create"
+          path="dashboard/coupon"
           element={
             <>
-              <PageTitle title="Create color" />
-              <CarCreate />
+              <PageTitle title="Coupon List" />
+              <Coupon />
             </>
           }
         />
 
-        <Route
-          path="dashboard/booking"
-          element={
-            <>
-              <PageTitle title="All Bookings" />
-              <Bookings />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/booking"
-          element={
-            <>
-              <PageTitle title="All Bookings" />
-              <Bookings />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/booking/create"
-          element={
-            <>
-              <PageTitle title="Create Service Booking" />
-              <BookingCreate />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/driver"
-          element={
-            <>
-              <PageTitle title=" Driver List" />
-              <Driver />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/driver/create"
-          element={
-            <>
-              <PageTitle title="Create Driver" />
-              <DriverCreate />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/driver/:id"
-          element={
-            <>
-              <PageTitle title="Driver Details" />
-              <DriverView />
-            </>
-          }
-        />
         <Route
           path="dashboard/contact"
           element={

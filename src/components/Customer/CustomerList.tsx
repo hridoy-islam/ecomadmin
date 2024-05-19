@@ -43,11 +43,11 @@ const CustomerList = () => {
 
   const handleApprove = (id) => {
     setModalData(id);
-    setIsApproveModal(true)
+    setIsApproveModal(true);
   };
 
   const closeApprove = () => {
-    setIsApproveModal(true)
+    setIsApproveModal(true);
   };
 
   const handleApproveConfirm = async () => {
@@ -141,7 +141,7 @@ const CustomerList = () => {
                   : 'text-black'
               }`}
             >
-              {/* {item?.status.toUpperCase()} */}
+              {item?.status}
             </p>
           </div>
           <div className="col-span-1 flex items-center space-x-2">

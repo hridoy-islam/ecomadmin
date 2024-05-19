@@ -131,16 +131,16 @@ const RenderCar = ({ data }) => {
           <span className="font-semibold">Date Posted</span>: {data?.createdAt}
         </div>
         <div className="mb-1">
-        <span className="font-semibold">Gallery</span>
+          <span className="font-semibold">Gallery</span>
           <span className="flex">
-          {data?.gallery?.map((item, index) => (
-            <img
-              key={index}
-              src={`https://res.cloudinary.com/dneodtbad/image/upload/${item}`}
-              className="h-16 max-w-full cursor-pointer rounded-lg object-cover object-center mr-1"
-              alt="gallery-image"
-            />
-          ))}
+            {data?.gallery?.map((item, index) => (
+              <img
+                key={index}
+                src={`https://res.cloudinary.com/dneodtbad/image/upload/${item}`}
+                className="h-16 max-w-full cursor-pointer rounded-lg object-cover object-center mr-1"
+                alt="gallery-image"
+              />
+            ))}
           </span>
         </div>
       </div>
@@ -158,7 +158,7 @@ const RenderContact = ({ data }) => {
         </div>
 
         <div className="mb-2">
-          <span className="font-semibold">Name</span>: {data?.name}
+          <span className="font-semibold">Name</span>: {data?.full_name}
         </div>
         <div className="mb-2">
           <span className="font-semibold">Phone</span>: {data?.phone}
@@ -167,8 +167,11 @@ const RenderContact = ({ data }) => {
           <span className="font-semibold">Email</span>: {data?.email}
         </div>
         <div className="mb-2">
-          <span className="font-semibold">Message</span>: {data?.message}
+          <span className="font-semibold">Subject</span>: {data?.subject}
         </div>
+      </div>
+      <div className="my-2">
+        <span className="font-semibold">Message</span>: {data?.content}
       </div>
     </div>
   );

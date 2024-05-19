@@ -5,7 +5,7 @@ import { SearchFilter } from '../SearchFilter/SearchFilter';
 import { TiTick, TiEyeOutline } from 'react-icons/ti';
 import ConfirmModal from '../Modal/ConfirmModal';
 import ViewModal from '../Modal/ViewModal';
-import { IoCheckmarkDoneCircle } from "react-icons/io5";
+import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -15,7 +15,7 @@ const CategoryList = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
 
   const [isConfirmModal, setIsConfirmModal] = useState(false);
-  const [isSoldModal, setIsSoldModal] = useState(false)
+  const [isSoldModal, setIsSoldModal] = useState(false);
   const [isViewModal, setIsViewModal] = useState(false);
   const [modalData, setModalData] = useState();
   const [viewModalData, setViewModalData] = useState();
@@ -43,7 +43,6 @@ const CategoryList = () => {
   };
 
   const handleConfirm = async () => {
-    
     const res = await axiosInstance.patch(`/categories/${modalData}`, {
       status: 'approve',
     });
@@ -54,7 +53,6 @@ const CategoryList = () => {
   };
 
   const handleConfirmSold = async () => {
-    
     const res = await axiosInstance.patch(`/categories/${modalData}`, {
       status: 'sold',
     });
@@ -107,11 +105,10 @@ const CategoryList = () => {
         onEntriesPerPageChange={handleEntriesPerPageChange}
       />
       <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        
-        <div className="col-span-1 flex items-center">
+        <div className="col-span-7 flex items-center">
           <p className="font-medium">Category</p>
         </div>
-        
+
         <div className="col-span-1 flex items-center">
           <p className="font-medium">Actions</p>
         </div>
@@ -122,10 +119,10 @@ const CategoryList = () => {
           className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
           key={key}
         >
-          <div className="col-span-1 hidden items-center sm:flex">
+          <div className="col-span-7 hidden items-center sm:flex">
             <p className="text-sm text-black dark:text-white">{item.name}</p>
           </div>
-          
+
           <div className="col-span-1 flex items-center space-x-2">
             <p
               className="text-3xl text-meta-3 cursor-pointer"
@@ -140,12 +137,14 @@ const CategoryList = () => {
             >
               <TiEyeOutline />
             </p>
-            {item?.status === 'approve' && <p
-              className="text-3xl text-meta-1 cursor-pointer"
-              onClick={() => handleSold(item._id)}
-            >
-              <IoCheckmarkDoneCircle />
-            </p>}
+            {item?.status === 'approve' && (
+              <p
+                className="text-3xl text-meta-1 cursor-pointer"
+                onClick={() => handleSold(item._id)}
+              >
+                <IoCheckmarkDoneCircle />
+              </p>
+            )}
           </div>
         </div>
       ))}
