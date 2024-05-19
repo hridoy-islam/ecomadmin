@@ -1,0 +1,206 @@
+[
+  { "id": "1", "division_id": "1", "value": "Comilla", "label": "Comilla" },
+  { "id": "2", "division_id": "1", "value": "Feni", "label": "Feni" },
+  {
+    "id": "3",
+    "division_id": "1",
+    "value": "Brahmanbaria",
+    "label": "Brahmanbaria"
+  },
+  { "id": "4", "division_id": "1", "value": "Rangamati", "label": "Rangamati" },
+  { "id": "5", "division_id": "1", "value": "Noakhali", "label": "Noakhali" },
+  { "id": "6", "division_id": "1", "value": "Chandpur", "label": "Chandpur" },
+  {
+    "id": "7",
+    "division_id": "1",
+    "value": "Lakshmipur",
+    "label": "Lakshmipur"
+  },
+  {
+    "id": "8",
+    "division_id": "1",
+    "value": "Chattogram",
+    "label": "Chattogram"
+  },
+  { "id": "9", "division_id": "1", "value": "Coxsbazar", "label": "Coxsbazar" },
+  {
+    "id": "10",
+    "division_id": "1",
+    "value": "Khagrachhari",
+    "label": "Khagrachhari"
+  },
+  {
+    "id": "11",
+    "division_id": "1",
+    "value": "Bandarban",
+    "label": "Bandarban"
+  },
+  {
+    "id": "12",
+    "division_id": "2",
+    "value": "Sirajganj",
+    "label": "Sirajganj"
+  },
+  { "id": "13", "division_id": "2", "value": "Pabna", "label": "Pabna" },
+  { "id": "14", "division_id": "2", "value": "Bogura", "label": "Bogura" },
+  { "id": "15", "division_id": "2", "value": "Rajshahi", "label": "Rajshahi" },
+  { "id": "16", "division_id": "2", "value": "Natore", "label": "Natore" },
+  {
+    "id": "17",
+    "division_id": "2",
+    "value": "Joypurhat",
+    "label": "Joypurhat"
+  },
+  {
+    "id": "18",
+    "division_id": "2",
+    "value": "Chapainawabganj",
+    "label": "Chapainawabganj"
+  },
+  { "id": "19", "division_id": "2", "value": "Naogaon", "label": "Naogaon" },
+  { "id": "20", "division_id": "3", "value": "Jashore", "label": "Jashore" },
+  { "id": "21", "division_id": "3", "value": "Satkhira", "label": "Satkhira" },
+  { "id": "22", "division_id": "3", "value": "Meherpur", "label": "Meherpur" },
+  { "id": "23", "division_id": "3", "value": "Narail", "label": "Narail" },
+  {
+    "id": "24",
+    "division_id": "3",
+    "value": "Chuadanga",
+    "label": "Chuadanga"
+  },
+  { "id": "25", "division_id": "3", "value": "Kushtia", "label": "Kushtia" },
+  { "id": "26", "division_id": "3", "value": "Magura", "label": "Magura" },
+  { "id": "27", "division_id": "3", "value": "Khulna", "label": "Khulna" },
+  { "id": "28", "division_id": "3", "value": "Bagerhat", "label": "Bagerhat" },
+  {
+    "id": "29",
+    "division_id": "3",
+    "value": "Jhenaidah",
+    "label": "Jhenaidah"
+  },
+  {
+    "id": "30",
+    "division_id": "4",
+    "value": "Jhalakathi",
+    "label": "Jhalakathi"
+  },
+  {
+    "id": "31",
+    "division_id": "4",
+    "value": "Patuakhali",
+    "label": "Patuakhali"
+  },
+  { "id": "32", "division_id": "4", "value": "Pirojpur", "label": "Pirojpur" },
+  { "id": "33", "division_id": "4", "value": "Barisal", "label": "Barisal" },
+  { "id": "34", "division_id": "4", "value": "Bhola", "label": "Bhola" },
+  { "id": "35", "division_id": "4", "value": "Barguna", "label": "Barguna" },
+  { "id": "36", "division_id": "5", "value": "Sylhet", "label": "Sylhet" },
+  {
+    "id": "37",
+    "division_id": "5",
+    "value": "Moulvibazar",
+    "label": "Moulvibazar"
+  },
+  { "id": "38", "division_id": "5", "value": "Habiganj", "label": "Habiganj" },
+  {
+    "id": "39",
+    "division_id": "5",
+    "value": "Sunamganj",
+    "label": "Sunamganj"
+  },
+  {
+    "id": "40",
+    "division_id": "6",
+    "value": "Narsingdi",
+    "label": "Narsingdi"
+  },
+  { "id": "41", "division_id": "6", "value": "Gazipur", "label": "Gazipur" },
+  {
+    "id": "42",
+    "division_id": "6",
+    "value": "Shariatpur",
+    "label": "Shariatpur"
+  },
+  {
+    "id": "43",
+    "division_id": "6",
+    "value": "Narayanganj",
+    "label": "Narayanganj"
+  },
+  { "id": "44", "division_id": "6", "value": "Tangail", "label": "Tangail" },
+  {
+    "id": "45",
+    "division_id": "6",
+    "value": "Kishoreganj",
+    "label": "Kishoreganj"
+  },
+  {
+    "id": "46",
+    "division_id": "6",
+    "value": "Manikganj",
+    "label": "Manikganj"
+  },
+  { "id": "47", "division_id": "6", "value": "Dhaka", "label": "Dhaka" },
+  {
+    "id": "48",
+    "division_id": "6",
+    "value": "Munshiganj",
+    "label": "Munshiganj"
+  },
+  { "id": "49", "division_id": "6", "value": "Rajbari", "label": "Rajbari" },
+  {
+    "id": "50",
+    "division_id": "6",
+    "value": "Madaripur",
+    "label": "Madaripur"
+  },
+  {
+    "id": "51",
+    "division_id": "6",
+    "value": "Gopalganj",
+    "label": "Gopalganj"
+  },
+  { "id": "52", "division_id": "6", "value": "Faridpur", "label": "Faridpur" },
+  {
+    "id": "53",
+    "division_id": "7",
+    "value": "Panchagarh",
+    "label": "Panchagarh"
+  },
+  { "id": "54", "division_id": "7", "value": "Dinajpur", "label": "Dinajpur" },
+  {
+    "id": "55",
+    "division_id": "7",
+    "value": "Lalmonirhat",
+    "label": "Lalmonirhat"
+  },
+  {
+    "id": "56",
+    "division_id": "7",
+    "value": "Nilphamari",
+    "label": "Nilphamari"
+  },
+  {
+    "id": "57",
+    "division_id": "7",
+    "value": "Gaibandha",
+    "label": "Gaibandha"
+  },
+  {
+    "id": "58",
+    "division_id": "7",
+    "value": "Thakurgaon",
+    "label": "Thakurgaon"
+  },
+  { "id": "59", "division_id": "7", "value": "Rangpur", "label": "Rangpur" },
+  { "id": "60", "division_id": "7", "value": "Kurigram", "label": "Kurigram" },
+  { "id": "61", "division_id": "8", "value": "Sherpur", "label": "Sherpur" },
+  {
+    "id": "62",
+    "division_id": "8",
+    "value": "Mymensingh",
+    "label": "Mymensingh"
+  },
+  { "id": "63", "division_id": "8", "value": "Jamalpur", "label": "Jamalpur" },
+  { "id": "64", "division_id": "8", "value": "Netrokona", "label": "Netrokona" }
+]

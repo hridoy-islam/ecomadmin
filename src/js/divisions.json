@@ -1,0 +1,10 @@
+[
+  { "id": "1", "value": "Chattagram", "label": "Chattagram" },
+  { "id": "2", "value": "Rajshahi", "label": "Rajshahi" },
+  { "id": "3", "value": "Khulna", "label": "Khulna" },
+  { "id": "4", "value": "Barisal", "label": "Barisal" },
+  { "id": "5", "value": "Sylhet", "label": "Sylhet" },
+  { "id": "6", "value": "Dhaka", "label": "Dhaka" },
+  { "id": "7", "value": "Rangpur", "label": "Rangpur" },
+  { "id": "8", "value": "Mymensingh", "label": "Mymensingh" }
+]
