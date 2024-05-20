@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import ECommerce from './pages/Dashboard/ECommerce';
-import Customer from './pages/Customer';
 import CustomerCreate from './pages/CustomerCreate';
 import CustomerEdit from './pages/CustomerEdit';
 import FormElements from './pages/Form/FormElements';
@@ -15,9 +14,62 @@ import Categories from './pages/Categories';
 import Size from './pages/Size';
 import Color from './pages/Color';
 import Coupon from './pages/Coupon';
-import Product from './pages/Product';
+import Product from './pages/Product/Product';
 import ProductCreate from './pages/ProductCreate';
 import SubCategories from './pages/SubCategories';
+import Customer from './pages/Customer/Customer';
+import CustomerDetail from './pages/Customer/CustomerDetail';
+
+const routeConfigs = [
+  { path: '/', component: SignIn, title: 'Admin' },
+  {
+    path: 'dashboard',
+    component: ECommerce,
+    title: 'eCommerce Dashboard Admin',
+  },
+  { path: 'dashboard/customer', component: Customer, title: 'Customer' },
+  {
+    path: 'dashboard/customer/detail/:id',
+    component: CustomerDetail,
+    title: 'Customer Details',
+  },
+  {
+    path: 'dashboard/customer/create',
+    component: CustomerCreate,
+    title: 'Create New Customer',
+  },
+  {
+    path: 'dashboard/customer/:id',
+    component: CustomerEdit,
+    title: 'Edit Customer Details',
+  },
+  { path: 'dashboard/product', component: Product, title: 'Product List' },
+  {
+    path: 'dashboard/product/create',
+    component: ProductCreate,
+    title: 'Create Product',
+  },
+  { path: 'dashboard/brand', component: Brand, title: 'Brand List' },
+  {
+    path: 'dashboard/categories',
+    component: Categories,
+    title: 'Category List',
+  },
+  {
+    path: 'dashboard/categories/child',
+    component: SubCategories,
+    title: 'Sub Category List',
+  },
+  { path: 'dashboard/size', component: Size, title: 'Size List' },
+  { path: 'dashboard/color', component: Color, title: 'Color List' },
+  { path: 'dashboard/coupon', component: Coupon, title: 'Coupon List' },
+  { path: 'dashboard/contact', component: Contact, title: 'Contact Form' },
+  {
+    path: 'dashboard/forms/form-elements',
+    component: FormElements,
+    title: 'Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template',
+  },
+];
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -36,148 +88,18 @@ function App() {
   ) : (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <PageTitle title="Admin" />
-              <SignIn />
-            </>
-          }
-        />
-        <Route
-          path="dashboard"
-          element={
-            <>
-              <PageTitle title="eCommerce Dashboard Admin " />
-              <ECommerce />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/customer"
-          element={
-            <>
-              <PageTitle title="Customer" />
-              <Customer />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/customer/create"
-          element={
-            <>
-              <PageTitle title="Create New Customer" />
-              <CustomerCreate />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/customer/:id"
-          element={
-            <>
-              <PageTitle title="Edit Customer Details" />
-              <CustomerEdit />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/product"
-          element={
-            <>
-              <PageTitle title="Product List" />
-              <Product />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/product/create"
-          element={
-            <>
-              <PageTitle title="Create Product" />
-              <ProductCreate />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/brand"
-          element={
-            <>
-              <PageTitle title="Brand List" />
-              <Brand />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/categories"
-          element={
-            <>
-              <PageTitle title="Category List" />
-              <Categories />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/categories/child"
-          element={
-            <>
-              <PageTitle title="Sub Category List" />
-              <SubCategories />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/size"
-          element={
-            <>
-              <PageTitle title="Size List" />
-              <Size />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/color"
-          element={
-            <>
-              <PageTitle title="Color List" />
-              <Color />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/coupon"
-          element={
-            <>
-              <PageTitle title="Coupon List" />
-              <Coupon />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/contact"
-          element={
-            <>
-              <PageTitle title="Contact Form" />
-              <Contact />
-            </>
-          }
-        />
-        <Route
-          path="dashboard/forms/form-elements"
-          element={
-            <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormElements />
-            </>
-          }
-        />
+        {routeConfigs.map((config, index) => (
+          <Route
+            key={index}
+            path={config.path}
+            element={
+              <>
+                <PageTitle title={config.title} />
+                <config.component />
+              </>
+            }
+          />
+        ))}
       </Routes>
     </>
   );

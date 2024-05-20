@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '../../axios';
 import Pagination from '../Pagination/Pagination';
 import { SearchFilter } from '../SearchFilter/SearchFilter';
-import { TiTick, TiEyeOutline } from 'react-icons/ti';
 import ConfirmModal from '../Modal/ConfirmModal';
-import ViewModal from '../Modal/ViewModal';
-import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 const ColorList = () => {
   const [colors, setColors] = useState([]);
@@ -101,91 +99,72 @@ const ColorList = () => {
 
   return (
     <>
-      <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <Link
-          to="/dashboard/color/create"
-          className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-        >
-          Add New
-        </Link>
-      </div>
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <SearchFilter
-          onSearch={handleSearch}
-          onEntriesPerPageChange={handleEntriesPerPageChange}
-        />
-        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-          <div className="col-span-7 flex items-center">
-            <p className="font-medium">Color</p>
-          </div>
-
-          <div className="col-span-1 flex items-center">
-            <p className="font-medium">Actions</p>
-          </div>
+      <div className="flex gap-4 ">
+        <div className="w-1/3 h-32 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <form action="" className="p-4 space-y-3">
+            <input
+              type="text"
+              placeholder="Color"
+              className="w-full border-[1.5px] border-stroke-1 bg-transparent py-2 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white "
+            />
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+            >
+              Add New
+            </button>
+          </form>
         </div>
-
-        {colors.map((item, key) => (
-          <div
-            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-            key={key}
-          >
-            <div className="col-span-7 hidden items-center sm:flex">
-              <p className="text-sm text-black dark:text-white">{item.name}</p>
+        <div className="w-2/3 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <SearchFilter
+            onSearch={handleSearch}
+            onEntriesPerPageChange={handleEntriesPerPageChange}
+          />
+          <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+            <div className="col-span-7 flex items-center">
+              <p className="font-medium">Color</p>
             </div>
 
-            <div className="col-span-1 flex items-center space-x-2">
-              <p
-                className="text-3xl text-meta-3 cursor-pointer"
-                onClick={() => handleStatus(item._id)}
-              >
-                <TiTick />
-              </p>
-
-              <p
-                className="text-3xl text-meta-5 cursor-pointer"
-                onClick={() => handleViewModal(item)}
-              >
-                <TiEyeOutline />
-              </p>
-              {item?.status === 'approve' && (
-                <p
-                  className="text-3xl text-meta-1 cursor-pointer"
-                  onClick={() => handleSold(item._id)}
-                >
-                  <IoCheckmarkDoneCircle />
-                </p>
-              )}
+            <div className="col-span-1 flex items-center">
+              <p className="font-medium">Actions</p>
             </div>
           </div>
-        ))}
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-        <ConfirmModal
-          isOpen={isConfirmModal}
-          title="Approve Car"
-          message="Are you sure you want to approve this car listing?"
-          onCancel={closeModal}
-          onConfirm={handleConfirm}
-        />
-        <ConfirmModal
-          isOpen={isSoldModal}
-          title="Confirm Sold"
-          message="Are you sure is this car sold?"
-          onCancel={closeModalSold}
-          onConfirm={handleConfirmSold}
-        />
+          {colors.map((item, key) => (
+            <div
+              className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+              key={key}
+            >
+              <div className="col-span-7 hidden items-center sm:flex">
+                <p className="text-sm text-black dark:text-white">
+                  {item.name}
+                </p>
+              </div>
 
-        <ViewModal
-          isOpen={isViewModal}
-          title="Car Details"
-          data={viewModalData}
-          onCancel={closeViewModal}
-          type="car"
-        />
+              <div className="col-span-1 flex items-center space-x-2">
+                <p
+                  className="text-xl text-meta-1 cursor-pointer"
+                  onClick={() => handleStatus(item._id)}
+                >
+                  <FaRegTrashAlt />
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+          <ConfirmModal
+            isOpen={isConfirmModal}
+            title="Approve Car"
+            message="Are you sure you want to approve this car listing?"
+            onCancel={closeModal}
+            onConfirm={handleConfirm}
+          />
+        </div>
       </div>
     </>
   );
