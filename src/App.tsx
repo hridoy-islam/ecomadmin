@@ -7,21 +7,17 @@ import ECommerce from './pages/Dashboard/ECommerce';
 import Customer from './pages/Customer';
 import CustomerCreate from './pages/CustomerCreate';
 import CustomerEdit from './pages/CustomerEdit';
-import CarCreate from './pages/CarCreate';
 import FormElements from './pages/Form/FormElements';
 import SignIn from './pages/Authentication/SignIn';
-import DriverCreate from './pages/DriverCreate';
-import Driver from './pages/Driver';
-import { DriverView } from './pages/DriverView';
-import Bookings from './pages/Bookings';
 import Contact from './pages/Contact';
-import BookingCreate from './pages/BookingCreate';
 import Brand from './pages/Brand';
 import Categories from './pages/Categories';
 import Size from './pages/Size';
 import Color from './pages/Color';
 import Coupon from './pages/Coupon';
 import Product from './pages/Product';
+import ProductCreate from './pages/ProductCreate';
+import SubCategories from './pages/SubCategories';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -94,22 +90,23 @@ function App() {
             </>
           }
         />
+
+        <Route
+          path="dashboard/product/create"
+          element={
+            <>
+              <PageTitle title="Create Product" />
+              <ProductCreate />
+            </>
+          }
+        />
+
         <Route
           path="dashboard/brand"
           element={
             <>
               <PageTitle title="Brand List" />
               <Brand />
-            </>
-          }
-        />
-
-        <Route
-          path="dashboard/brand/create"
-          element={
-            <>
-              <PageTitle title="Create Car" />
-              <CarCreate />
             </>
           }
         />
@@ -123,13 +120,12 @@ function App() {
             </>
           }
         />
-
         <Route
-          path="dashboard/categories/create"
+          path="dashboard/categories/child"
           element={
             <>
-              <PageTitle title="Create Category" />
-              <CarCreate />
+              <PageTitle title="Sub Category List" />
+              <SubCategories />
             </>
           }
         />
@@ -144,15 +140,6 @@ function App() {
           }
         />
 
-        <Route
-          path="dashboard/size/create"
-          element={
-            <>
-              <PageTitle title="Create Size" />
-              <CarCreate />
-            </>
-          }
-        />
         <Route
           path="dashboard/color"
           element={

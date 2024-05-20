@@ -8,7 +8,7 @@ import ViewModal from '../Modal/ViewModal';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
-const CategoryList = () => {
+const SubCategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -192,4 +192,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default SubCategoryList;

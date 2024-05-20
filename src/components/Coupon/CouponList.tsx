@@ -5,6 +5,7 @@ import { SearchFilter } from '../SearchFilter/SearchFilter';
 import moment from 'moment';
 import { TiEyeOutline } from 'react-icons/ti';
 import ViewModal from '../Modal/ViewModal';
+import { Link } from 'react-router-dom';
 
 const CouponList = () => {
   const [coupon, setCoupon] = useState([]);
@@ -45,67 +46,78 @@ const CouponList = () => {
   };
 
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <SearchFilter
-        onSearch={handleSearch}
-        onEntriesPerPageChange={handleEntriesPerPageChange}
-      />
-      <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="hidden items-center sm:flex">
-          <p className="font-medium">Coupon Code</p>
-        </div>
-        <div className="flex items-center">
-          <p className="font-medium">Discount Type</p>
-        </div>
-        <div className="flex items-center">
-          <p className="font-medium">Discount Amount</p>
-        </div>
-        <div className="flex items-center">
-          <p className="font-medium">Usage Limit</p>
-        </div>
-
-        <div className="flex items-center">
-          <p className="font-medium">Expire Date</p>
-        </div>
+    <>
+      <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <Link
+          to="/dashboard/coupon/create"
+          className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+        >
+          Add New
+        </Link>
       </div>
 
-      {coupon.map((item, key) => (
-        <div
-          className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
-        >
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <SearchFilter
+          onSearch={handleSearch}
+          onEntriesPerPageChange={handleEntriesPerPageChange}
+        />
+        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
           <div className="hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">{item.code}</p>
+            <p className="font-medium">Coupon Code</p>
           </div>
           <div className="flex items-center">
-            <p className="text-sm text-black dark:text-white">
-              {item.discount_type}
-            </p>
+            <p className="font-medium">Discount Type</p>
           </div>
-          <div className=" flex items-center">
-            <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
-              {item.discount_amount}
-            </p>
+          <div className="flex items-center">
+            <p className="font-medium">Discount Amount</p>
           </div>
-          <div className=" flex items-center">
-            <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
-              {item.usage_limit}
-            </p>
+          <div className="flex items-center">
+            <p className="font-medium">Usage Limit</p>
           </div>
 
           <div className="flex items-center">
-            <p className="text-sm text-black dark:text-white">
-              {moment(item?.expires_at).format('MMM Do YY')}
-            </p>
+            <p className="font-medium">Expire Date</p>
           </div>
         </div>
-      ))}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </div>
+
+        {coupon.map((item, key) => (
+          <div
+            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            key={key}
+          >
+            <div className="hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.code}</p>
+            </div>
+            <div className="flex items-center">
+              <p className="text-sm text-black dark:text-white">
+                {item.discount_type}
+              </p>
+            </div>
+            <div className=" flex items-center">
+              <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
+                {item.discount_amount}
+              </p>
+            </div>
+            <div className=" flex items-center">
+              <p className="text-sm text-black dark:text-white overflow-hidden whitespace-nowrap overflow-ellipsis">
+                {item.usage_limit}
+              </p>
+            </div>
+
+            <div className="flex items-center">
+              <p className="text-sm text-black dark:text-white">
+                {moment(item?.expires_at).format('MMM Do YY')}
+              </p>
+            </div>
+          </div>
+        ))}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
+    </>
   );
 };
 

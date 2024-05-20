@@ -92,103 +92,116 @@ const CustomerList = () => {
   };
 
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <SearchFilter
-        onSearch={handleSearch}
-        onEntriesPerPageChange={handleEntriesPerPageChange}
-      />
-      <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-3 flex items-center">
-          <p className="font-medium">Name</p>
-        </div>
-        <div className="col-span-2 hidden items-center sm:flex">
-          <p className="font-medium">Email</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Phone</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Status</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Actions</p>
-        </div>
+    <>
+      <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <Link
+          to="/dashboard/customer/create"
+          className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+        >
+          Add New
+        </Link>
       </div>
 
-      {customer.map((item, key) => (
-        <div
-          className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
-        >
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <SearchFilter
+          onSearch={handleSearch}
+          onEntriesPerPageChange={handleEntriesPerPageChange}
+        />
+        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
           <div className="col-span-3 flex items-center">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <p className="text-sm text-black dark:text-white">{item.name}</p>
-            </div>
+            <p className="font-medium">Name</p>
           </div>
           <div className="col-span-2 hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">{item.email}</p>
+            <p className="font-medium">Email</p>
           </div>
           <div className="col-span-1 flex items-center">
-            <p className="text-sm text-black dark:text-white">{item.phone}</p>
+            <p className="font-medium">Phone</p>
           </div>
           <div className="col-span-1 flex items-center">
-            <p
-              className={` text-md dark:text-white ${
-                item.status == 'active'
-                  ? 'text-green-600'
-                  : item?.status == 'block'
-                  ? 'text-red-500'
-                  : 'text-black'
-              }`}
-            >
-              {item?.status}
-            </p>
+            <p className="font-medium">Status</p>
           </div>
-          <div className="col-span-1 flex items-center space-x-2">
-            <p className="text-sm text-meta-3">
-              <Link to={`/dashboard/customer/${item._id}`}>
-                <FaPenToSquare />
-              </Link>
-            </p>
-            {item?.status === 'active' ? (
-              <p
-                className="text-lg text-danger cursor-pointer"
-                onClick={() => handleStatus(item._id)}
-              >
-                <ImBlocked />
-              </p>
-            ) : (
-              <p
-                className="text-lg text-blue-500 cursor-pointer"
-                onClick={() => handleApprove(item._id)}
-              >
-                <FaCheck />
-              </p>
-            )}
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Actions</p>
           </div>
         </div>
-      ))}
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      <ConfirmModal
-        isOpen={isConfirmModal}
-        title="Confirm Block User"
-        message="Are you sure you want to block this user?"
-        onCancel={closeModal}
-        onConfirm={handleConfirm}
-      />
-      <ConfirmModal
-        isOpen={isApproveModal}
-        title="Confirm Active User"
-        message="Are you sure you want to Active this user?"
-        onCancel={closeApprove}
-        onConfirm={handleApproveConfirm}
-      />
-    </div>
+        {customer.map((item, key) => (
+          <div
+            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            key={key}
+          >
+            <div className="col-span-3 flex items-center">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <p className="text-sm text-black dark:text-white">
+                  {item.name}
+                </p>
+              </div>
+            </div>
+            <div className="col-span-2 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.email}</p>
+            </div>
+            <div className="col-span-1 flex items-center">
+              <p className="text-sm text-black dark:text-white">{item.phone}</p>
+            </div>
+            <div className="col-span-1 flex items-center">
+              <p
+                className={` text-md dark:text-white ${
+                  item.status == 'active'
+                    ? 'text-green-600'
+                    : item?.status == 'block'
+                    ? 'text-red-500'
+                    : 'text-black'
+                }`}
+              >
+                {item?.status}
+              </p>
+            </div>
+            <div className="col-span-1 flex items-center space-x-2">
+              <p className="text-sm text-meta-3">
+                <Link to={`/dashboard/customer/${item._id}`}>
+                  <FaPenToSquare />
+                </Link>
+              </p>
+              {item?.status === 'active' ? (
+                <p
+                  className="text-lg text-danger cursor-pointer"
+                  onClick={() => handleStatus(item._id)}
+                >
+                  <ImBlocked />
+                </p>
+              ) : (
+                <p
+                  className="text-lg text-blue-500 cursor-pointer"
+                  onClick={() => handleApprove(item._id)}
+                >
+                  <FaCheck />
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+        <ConfirmModal
+          isOpen={isConfirmModal}
+          title="Confirm Block User"
+          message="Are you sure you want to block this user?"
+          onCancel={closeModal}
+          onConfirm={handleConfirm}
+        />
+        <ConfirmModal
+          isOpen={isApproveModal}
+          title="Confirm Active User"
+          message="Are you sure you want to Active this user?"
+          onCancel={closeApprove}
+          onConfirm={handleApproveConfirm}
+        />
+      </div>
+    </>
   );
 };
 

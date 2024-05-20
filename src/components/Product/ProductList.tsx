@@ -6,6 +6,7 @@ import { TiTick, TiEyeOutline } from 'react-icons/ti';
 import ConfirmModal from '../Modal/ConfirmModal';
 import ViewModal from '../Modal/ViewModal';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -99,108 +100,118 @@ const ProductList = () => {
   };
 
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <SearchFilter
-        onSearch={handleSearch}
-        onEntriesPerPageChange={handleEntriesPerPageChange}
-      />
-      <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Product Name</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Thumbnail</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Category</p>
-        </div>
-
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Brand</p>
-        </div>
-
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Actions</p>
-        </div>
-      </div>
-
-      {products.map((item, key) => (
-        <div
-          className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
+    <>
+      <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <Link
+          to="/dashboard/product/create"
+          className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
         >
-          <div className="col-span-1 hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">{item.name}</p>
+          Add New
+        </Link>
+      </div>
+      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <SearchFilter
+          onSearch={handleSearch}
+          onEntriesPerPageChange={handleEntriesPerPageChange}
+        />
+        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Product Name</p>
           </div>
-          <div className="col-span-1 hidden items-center sm:flex">
-            <img src={item.image_gallery[0]} alt="" />
-            Thumbnail Will come
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Thumbnail</p>
           </div>
-          <div className="col-span-1 hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">
-              {item.category.name}
-            </p>
-          </div>
-          <div className="col-span-1 hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">
-              {item.brand.name}
-            </p>
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Category</p>
           </div>
 
-          <div className="col-span-1 flex items-center space-x-2">
-            <p
-              className="text-3xl text-meta-3 cursor-pointer"
-              onClick={() => handleStatus(item._id)}
-            >
-              <TiTick />
-            </p>
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Brand</p>
+          </div>
 
-            <p
-              className="text-3xl text-meta-5 cursor-pointer"
-              onClick={() => handleViewModal(item)}
-            >
-              <TiEyeOutline />
-            </p>
-            {item?.status === 'approve' && (
-              <p
-                className="text-3xl text-meta-1 cursor-pointer"
-                onClick={() => handleSold(item._id)}
-              >
-                <IoCheckmarkDoneCircle />
-              </p>
-            )}
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Actions</p>
           </div>
         </div>
-      ))}
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      <ConfirmModal
-        isOpen={isConfirmModal}
-        title="Approve Car"
-        message="Are you sure you want to approve this car listing?"
-        onCancel={closeModal}
-        onConfirm={handleConfirm}
-      />
-      <ConfirmModal
-        isOpen={isSoldModal}
-        title="Confirm Sold"
-        message="Are you sure is this car sold?"
-        onCancel={closeModalSold}
-        onConfirm={handleConfirmSold}
-      />
+        {products.map((item, key) => (
+          <div
+            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            key={key}
+          >
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.name}</p>
+            </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <img src={item.image_gallery[0]} alt="" />
+              Thumbnail Will come
+            </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">
+                {item.category.name}
+              </p>
+            </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">
+                {item.brand.name}
+              </p>
+            </div>
 
-      <ViewModal
-        isOpen={isViewModal}
-        title="Car Details"
-        data={viewModalData}
-        onCancel={closeViewModal}
-        type="car"
-      />
-    </div>
+            <div className="col-span-1 flex items-center space-x-2">
+              <p
+                className="text-3xl text-meta-3 cursor-pointer"
+                onClick={() => handleStatus(item._id)}
+              >
+                <TiTick />
+              </p>
+
+              <p
+                className="text-3xl text-meta-5 cursor-pointer"
+                onClick={() => handleViewModal(item)}
+              >
+                <TiEyeOutline />
+              </p>
+              {item?.status === 'approve' && (
+                <p
+                  className="text-3xl text-meta-1 cursor-pointer"
+                  onClick={() => handleSold(item._id)}
+                >
+                  <IoCheckmarkDoneCircle />
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+        <ConfirmModal
+          isOpen={isConfirmModal}
+          title="Approve Car"
+          message="Are you sure you want to approve this car listing?"
+          onCancel={closeModal}
+          onConfirm={handleConfirm}
+        />
+        <ConfirmModal
+          isOpen={isSoldModal}
+          title="Confirm Sold"
+          message="Are you sure is this car sold?"
+          onCancel={closeModalSold}
+          onConfirm={handleConfirmSold}
+        />
+
+        <ViewModal
+          isOpen={isViewModal}
+          title="Car Details"
+          data={viewModalData}
+          onCancel={closeViewModal}
+          type="car"
+        />
+      </div>
+    </>
   );
 };
 
