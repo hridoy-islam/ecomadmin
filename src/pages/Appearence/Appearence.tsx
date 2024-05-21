@@ -1,28 +1,29 @@
-import { Link } from 'react-router-dom';
+
 import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 import DefaultLayout from '../../layout/DefaultLayout';
-
+import { AppearenceLayout } from '../../layout/AppearenceLayout';
 const Appearence = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Website Appearence" />
-      <div className="flex gap-3">
-        <div className="w-1/6">
-          <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-            <Link
-              to="/dashboard/brand/create"
-              className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-            >
-              Add New
-            </Link>
-          </div>
-        </div>
-        <div className="w-5/6">
-          <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          Hello
-          </div>
-        </div>
-      </div>
+      <AppearenceLayout>
+      <form action="" className='space-y-2'>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Website Name</label>
+                <input type="text" className='inputclass' placeholder='Website Name'/>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Phone Number</label>
+            <input type="text" className='inputclass' placeholder='Phone Number'/>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Facebook </label>
+            <input type="text" className='inputclass' placeholder='Facebook Link'/>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Instagram </label>
+            <input type="text" className='inputclass' placeholder='Instagram Link'/>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Pinterest </label>
+            <input type="text" className='inputclass' placeholder='Pinterest Link'/>
+            <label htmlFor="" className="mb-3 block text-black dark:text-white">Youtube </label>
+            <input type="text" className='inputclass' placeholder='Youtube Link'/>
+
+            <button type='submit' className='buttonclass'>Save</button>
+          </form>
+      </AppearenceLayout>
     </DefaultLayout>
   );
 };

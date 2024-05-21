@@ -8,6 +8,7 @@ import ConfirmModal from '../Modal/ConfirmModal';
 import { TiEyeOutline } from 'react-icons/ti';
 import { FaCheck } from 'react-icons/fa';
 import { FaPenToSquare } from 'react-icons/fa6';
+import { CgEye } from 'react-icons/cg';
 
 const CustomerList = () => {
   const [customer, setCustomer] = useState([]);
@@ -157,12 +158,17 @@ const CustomerList = () => {
               </p>
             </div>
             <div className="col-span-1 flex items-center space-x-2">
-              <p className="text-sm text-meta-3">
-                <Link to={`/dashboard/customer/${item._id}`}>
-                  <FaPenToSquare />
+              <p className="text-sm text-meta-7">
+                <Link to={`/dashboard/customer/detail/${item.id}`}>
+                  <CgEye className="text-xl" />
                 </Link>
               </p>
-              {item?.status === 'active' ? (
+              <p className="text-sm text-meta-5">
+                <Link to={`/dashboard/customer/${item.id}`}>
+                  <FaPenToSquare className="text-lg" />
+                </Link>
+              </p>
+              {/* {item?.status === 'active' ? (
                 <p
                   className="text-lg text-danger cursor-pointer"
                   onClick={() => handleStatus(item._id)}
@@ -176,7 +182,7 @@ const CustomerList = () => {
                 >
                   <FaCheck />
                 </p>
-              )}
+              )} */}
             </div>
           </div>
         ))}

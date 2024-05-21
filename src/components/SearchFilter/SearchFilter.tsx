@@ -6,7 +6,7 @@ export const SearchFilter = ({ onSearch, onEntriesPerPageChange }) => {
           onChange={onSearch}
           placeholder="Search..."
           type="search"
-          className="py-2 px-3 w-96 border border-gray-300 rounded-md bg-transparent outline-none"
+          className="py-2 px-3 w-96 border-2 border-gray-300 rounded-md bg-transparent outline-none"
         />
       </div>
       <div className="">

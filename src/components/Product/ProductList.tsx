@@ -7,6 +7,7 @@ import ConfirmModal from '../Modal/ConfirmModal';
 import ViewModal from '../Modal/ViewModal';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { CgEye } from 'react-icons/cg';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -165,11 +166,10 @@ const ProductList = () => {
                 <TiTick />
               </p>
 
-              <p
-                className="text-3xl text-meta-5 cursor-pointer"
-                onClick={() => handleViewModal(item)}
-              >
-                <TiEyeOutline />
+              <p className="text-sm text-meta-7">
+                <Link to={`/dashboard/product/detail/${item.id}`}>
+                  <CgEye className="text-xl" />
+                </Link>
               </p>
               {item?.status === 'approve' && (
                 <p
