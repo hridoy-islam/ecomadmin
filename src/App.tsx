@@ -17,8 +17,12 @@ import Coupon from './pages/Coupon';
 import Product from './pages/Product/Product';
 import ProductCreate from './pages/ProductCreate';
 import SubCategories from './pages/SubCategories';
+import Appearence from './pages/Appearence/Appearence';
+
 import Customer from './pages/Customer/Customer';
 import CustomerDetail from './pages/Customer/CustomerDetail';
+import Slider from './pages/Appearence/Slider';
+import Measurement from './pages/Measurement/Measurement';
 
 const routeConfigs = [
   { path: '/', component: SignIn, title: 'Admin' },
@@ -28,6 +32,16 @@ const routeConfigs = [
     title: 'eCommerce Dashboard Admin',
   },
   { path: 'dashboard/customer', component: Customer, title: 'Customer' },
+  {
+    path: 'dashboard/appearence',
+    component: Appearence,
+    title: 'Website Appearence',
+  },
+  {
+    path: 'dashboard/appearence/slider',
+    component: Slider,
+    title: 'Website Slider',
+  },
   {
     path: 'dashboard/customer/detail/:id',
     component: CustomerDetail,
@@ -64,6 +78,11 @@ const routeConfigs = [
   { path: 'dashboard/color', component: Color, title: 'Color List' },
   { path: 'dashboard/coupon', component: Coupon, title: 'Coupon List' },
   { path: 'dashboard/contact', component: Contact, title: 'Contact Form' },
+  {
+    path: 'dashboard/measurement',
+    component: Measurement,
+    title: 'Measurement Chart',
+  },
   {
     path: 'dashboard/forms/form-elements',
     component: FormElements,

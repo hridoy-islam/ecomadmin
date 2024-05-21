@@ -63,7 +63,7 @@ const ColorList = () => {
 
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/sizes?page=${page}&limit=${entriesPerPage}`;
+      let url = `/colors?page=${page}&limit=${entriesPerPage}`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;
