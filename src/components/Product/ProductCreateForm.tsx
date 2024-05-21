@@ -194,215 +194,214 @@ const ProductCreateForm = () => {
               </div>
             </div>
             {/* <div className="sectionbg my-2"> */}
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Product Varient
-                </h3>
-              </div>
-              <div className="flex py-4 px-6.5">
-                <div className="grid grid-cols-6 gap-1">
-                  <Controller
-                    name="division"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={divisions}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                        })}
-                        placeholder="Division"
-                        onChange={(selectedOption) => {
-                          field.onChange(selectedOption);
-                          handleDivisionChange(selectedOption);
-                        }}
-                        value={field.value}
-                      />
-                    )}
-                  />
-                  <Controller
-                    name="division"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={divisions}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                        })}
-                        placeholder="Division"
-                        onChange={(selectedOption) => {
-                          field.onChange(selectedOption);
-                          handleDivisionChange(selectedOption);
-                        }}
-                        value={field.value}
-                      />
-                    )}
-                  />{' '}
-                  <input type="text" className="border-b" placeholder="SKU" />{' '}
-                  <input type="text" className="border-b" placeholder="Stock" />
-                  <input type="text" className="border-b" placeholder="price" />
-                  <input type="file" className="" />
-                </div>
-              </div>
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Product Varient
+              </h3>
             </div>
-            <div className="sectionbg my-2">
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  SEO Details
-                </h3>
-              </div>
-              <div className="flex flex-col gap-5.5 p-6.5">
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    SEO Title
-                  </label>
-                  <input
-                    {...register('name', { required: true })}
-                    type="text"
-                    placeholder="Product Name"
-                    className="inputclass"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    URL
-                  </label>
-                  <input className="inputclass" id="" />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    SEO Meta Description
-                  </label>
-                  <textarea name="" className="inputclass" id=""></textarea>
-                </div>
+            <div className="flex py-4 px-6.5">
+              <div className="grid grid-cols-6 gap-1">
+                <Controller
+                  name="division"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <ReactSelect
+                      {...field}
+                      options={divisions}
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderColor: state.isFocused ? 'black' : 'grey',
+                        }),
+                      }}
+                      theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 5,
+                        colors: {
+                          ...theme.colors,
+                          primary: 'black',
+                        },
+                      })}
+                      placeholder="Division"
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption);
+                        handleDivisionChange(selectedOption);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />
+                <Controller
+                  name="division"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <ReactSelect
+                      {...field}
+                      options={divisions}
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderColor: state.isFocused ? 'black' : 'grey',
+                        }),
+                      }}
+                      theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 5,
+                        colors: {
+                          ...theme.colors,
+                          primary: 'black',
+                        },
+                      })}
+                      placeholder="Division"
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption);
+                        handleDivisionChange(selectedOption);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />{' '}
+                <input type="text" className="border-b" placeholder="SKU" />{' '}
+                <input type="text" className="border-b" placeholder="Stock" />
+                <input type="text" className="border-b" placeholder="price" />
+                <input type="file" className="" />
               </div>
             </div>
           </div>
-          <div className="w-1/4 ">
-            <div className="sectionbg">
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Publish Product
-                </h3>
+          <div className="sectionbg my-2">
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                SEO Details
+              </h3>
+            </div>
+            <div className="flex flex-col gap-5.5 p-6.5">
+              <div>
+                <label className="mb-3 block text-black dark:text-white">
+                  SEO Title
+                </label>
+                <input
+                  {...register('name', { required: true })}
+                  type="text"
+                  placeholder="Product Name"
+                  className="inputclass"
+                />
+              </div>
+
+              <div>
+                <label className="mb-3 block text-black dark:text-white">
+                  URL
+                </label>
+                <input className="inputclass" id="" />
+              </div>
+
+              <div>
+                <label className="mb-3 block text-black dark:text-white">
+                  SEO Meta Description
+                </label>
+                <textarea name="" className="inputclass" id=""></textarea>
               </div>
             </div>
-            <div className="sectionbg">
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Messuarment Chart
-                </h3>
-              </div>
-              <div className="py-4 px-6.5 border-b border-stroke">
-                <Controller
-                  name="division"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <ReactSelect
-                      {...field}
-                      options={divisions}
-                      styles={{
-                        control: (baseStyles, state) => ({
-                          ...baseStyles,
-                          borderColor: state.isFocused ? 'black' : 'grey',
-                        }),
-                      }}
-                      theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 5,
-                        colors: {
-                          ...theme.colors,
-                          primary: 'black',
-                        },
-                      })}
-                      placeholder="Division"
-                      onChange={(selectedOption) => {
-                        field.onChange(selectedOption);
-                        handleDivisionChange(selectedOption);
-                      }}
-                      value={field.value}
-                    />
-                  )}
-                />
-              </div>
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Select brand
-                </h3>
-              </div>
+          </div>
+        </div>
+        <div className="w-1/4 ">
+          <div className="sectionbg">
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Publish Product
+              </h3>
+            </div>
+          </div>
+          <div className="sectionbg">
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Messuarment Chart
+              </h3>
+            </div>
+            <div className="py-4 px-6.5 border-b border-stroke">
+              <Controller
+                name="division"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <ReactSelect
+                    {...field}
+                    options={divisions}
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderColor: state.isFocused ? 'black' : 'grey',
+                      }),
+                    }}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 5,
+                      colors: {
+                        ...theme.colors,
+                        primary: 'black',
+                      },
+                    })}
+                    placeholder="Division"
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      handleDivisionChange(selectedOption);
+                    }}
+                    value={field.value}
+                  />
+                )}
+              />
+            </div>
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Select brand
+              </h3>
+            </div>
 
-              <div className="py-4 px-6.5 border-b border-stroke">
-                <Controller
-                  name="division"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <ReactSelect
-                      {...field}
-                      options={divisions}
-                      styles={{
-                        control: (baseStyles, state) => ({
-                          ...baseStyles,
-                          borderColor: state.isFocused ? 'black' : 'grey',
-                        }),
-                      }}
-                      theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 5,
-                        colors: {
-                          ...theme.colors,
-                          primary: 'black',
-                        },
-                      })}
-                      placeholder="Division"
-                      onChange={(selectedOption) => {
-                        field.onChange(selectedOption);
-                        handleDivisionChange(selectedOption);
-                      }}
-                      value={field.value}
-                    />
-                  )}
-                />
-              </div>
+            <div className="py-4 px-6.5 border-b border-stroke">
+              <Controller
+                name="division"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <ReactSelect
+                    {...field}
+                    options={divisions}
+                    styles={{
+                      control: (baseStyles, state) => ({
+                        ...baseStyles,
+                        borderColor: state.isFocused ? 'black' : 'grey',
+                      }),
+                    }}
+                    theme={(theme) => ({
+                      ...theme,
+                      borderRadius: 5,
+                      colors: {
+                        ...theme.colors,
+                        primary: 'black',
+                      },
+                    })}
+                    placeholder="Division"
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      handleDivisionChange(selectedOption);
+                    }}
+                    value={field.value}
+                  />
+                )}
+              />
+            </div>
 
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Select Category
-                </h3>
-              </div>
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Select Category
+              </h3>
+            </div>
 
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
-                  Select Tag
-                </h3>
-              </div>
+            <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <h3 className="font-medium text-black dark:text-white">
+                Select Tag
+              </h3>
             </div>
           </div>
         </div>
