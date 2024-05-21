@@ -102,15 +102,8 @@ const ColorList = () => {
       <div className="flex gap-4 ">
         <div className="w-1/3 h-32 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
           <form action="" className="p-4 space-y-3">
-            <input
-              type="text"
-              placeholder="Color"
-              className="w-full border-[1.5px] border-stroke-1 bg-transparent py-2 px-4 text-black outline-none transition disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white "
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-            >
+            <input type="text" placeholder="Color" className="inputclass" />
+            <button type="submit" className="buttonclass">
               Add New
             </button>
           </form>

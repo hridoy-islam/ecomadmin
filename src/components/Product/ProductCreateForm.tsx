@@ -150,156 +150,29 @@ const ProductCreateForm = () => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
-          <div className="flex flex-col gap-9">
-            {/* <!-- Input Fields --> */}
-            <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="flex gap-9">
+          {/* <!-- Input Fields --> */}
+          <div className="w-3/4">
+            <div className="sectionbg">
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Car Details
+                  Product Details
                 </h3>
               </div>
+
               <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
-                    Car Name
+                    Product Name
                   </label>
                   <input
-                    {...register('title', { required: true })}
+                    {...register('name', { required: true })}
                     type="text"
-                    placeholder="Title"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    placeholder="Product Name"
+                    className="inputclass"
                   />
                 </div>
 
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Car Brand
-                  </label>
-                  <Controller
-                    name="brand"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={car_brands}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                          fontSize: '14px',
-                        })}
-                        placeholder="Car Brand"
-                      />
-                    )}
-                  />
-                  {errors.brand && <span>This field is required</span>}
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Color
-                  </label>
-                  <input
-                    type="text"
-                    {...register('color', { required: true })}
-                    placeholder="Color "
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.color && <span>This field is required</span>}
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Model
-                  </label>
-                  <input
-                    {...register('model', { required: true })}
-                    placeholder="Model"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.model && <span>This field is required</span>}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Registration Year
-                  </label>
-                  <input
-                    {...register('registration_year', { required: true })}
-                    placeholder="Registration Year"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.registration_year && (
-                    <span>This field is required</span>
-                  )}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Production Year
-                  </label>
-                  <input
-                    {...register('production_year', { required: true })}
-                    placeholder="Production Year"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.production_year && (
-                    <span>This field is required</span>
-                  )}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Price
-                  </label>
-                  <input
-                    {...register('price')}
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.price && <span>This field is required</span>}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Phone
-                  </label>
-                  <input
-                    {...register('phone')}
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.phone && <span>This field is required</span>}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Engine Capacity
-                  </label>
-                  <input
-                    type="text"
-                    {...register('engine_capacity')}
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.engine_capacity && (
-                    <span>This field is required</span>
-                  )}
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Kilometer
-                  </label>
-                  <input
-                    {...register('kilometer')}
-                    type="text"
-                    className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                  />
-                  {errors.kilometer && <span>This field is required</span>}
-                </div>
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
                     Details
@@ -320,119 +193,14 @@ const ProductCreateForm = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-9">
-            {/* <!-- Input Fields --> */}
-            <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+            <div className="sectionbg my-2">
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Other Details
+                  Product Varient
                 </h3>
               </div>
-              <div className="flex flex-col gap-5.5 p-6.5">
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Condition
-                  </label>
-                  <Controller
-                    name="condition"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={condition}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                          fontSize: '14px',
-                        })}
-                        placeholder="Car Condition"
-                      />
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Transmition
-                  </label>
-                  <Controller
-                    name="transmition"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={transmition}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                          fontSize: '14px',
-                        })}
-                        placeholder="Transmition Type"
-                      />
-                    )}
-                  />
-                </div>
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Fuel Type
-                  </label>
-                  <Controller
-                    name="fuelType"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        isMulti
-                        options={fuelType}
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                        })}
-                        components={animatedComponents}
-                        placeholder="Fuel Type"
-                      />
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    Division
-                  </label>
+              <div className="flex py-4 px-6.5">
+                <div className="grid grid-cols-6 gap-1">
                   <Controller
                     name="division"
                     control={control}
@@ -464,20 +232,14 @@ const ProductCreateForm = () => {
                       />
                     )}
                   />
-                </div>
-
-                <div>
-                  <label className="mb-3 block text-black dark:text-white">
-                    District
-                  </label>
                   <Controller
-                    name="district"
+                    name="division"
                     control={control}
                     defaultValue=""
                     render={({ field }) => (
                       <ReactSelect
                         {...field}
-                        options={districts}
+                        options={divisions}
                         styles={{
                           control: (baseStyles, state) => ({
                             ...baseStyles,
@@ -492,82 +254,154 @@ const ProductCreateForm = () => {
                             primary: 'black',
                           },
                         })}
-                        placeholder="District"
+                        placeholder="Division"
                         onChange={(selectedOption) => {
                           field.onChange(selectedOption);
-                          handleDistrictChange(selectedOption);
+                          handleDivisionChange(selectedOption);
                         }}
                         value={field.value}
                       />
                     )}
-                  />
+                  />{' '}
+                  <input type="text" className="border-b" placeholder="SKU" />{' '}
+                  <input type="text" className="border-b" placeholder="Stock" />
+                  <input type="text" className="border-b" placeholder="price" />
+                  <input type="file" className="" />
                 </div>
-
+              </div>
+            </div>
+            <div className="sectionbg my-2">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  SEO Details
+                </h3>
+              </div>
+              <div className="flex flex-col gap-5.5 p-6.5">
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
-                    Upazila
+                    SEO Title
                   </label>
-                  <Controller
-                    name="upazila"
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        options={upazilas}
-                        placeholder="Upazila"
-                        styles={{
-                          control: (baseStyles, state) => ({
-                            ...baseStyles,
-                            borderColor: state.isFocused ? 'black' : 'grey',
-                          }),
-                        }}
-                        theme={(theme) => ({
-                          ...theme,
-                          borderRadius: 5,
-                          colors: {
-                            ...theme.colors,
-                            primary: 'black',
-                          },
-                        })}
-                        onChange={(selectedOption) => {
-                          field.onChange(selectedOption);
-                        }}
-                        value={field.value}
-                      />
-                    )}
-                  />
-                </div>
-
-                <div>
-                  <CloudinaryUploadWidget
-                    uwConfig={uwConfig}
-                    setPublicId={handlePublicIdUpdate}
-                  />
-                  <div className="image-grid">
-                    {publicIds.map((publicId, index) => (
-                      <div key={index} className="image-item">
-                        <AdvancedImage
-                          style={{
-                            maxWidth: '20%',
-                            float: 'left',
-                            margin: '0 5px',
-                          }}
-                          cldImg={cld.image(publicId)}
-                          plugins={[responsive(), placeholder()]}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
                   <input
-                    type="submit"
-                    placeholder="Create Driver"
-                    className="rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black"
+                    {...register('name', { required: true })}
+                    type="text"
+                    placeholder="Product Name"
+                    className="inputclass"
                   />
                 </div>
+
+                <div>
+                  <label className="mb-3 block text-black dark:text-white">
+                    URL
+                  </label>
+                  <input className="inputclass" id="" />
+                </div>
+
+                <div>
+                  <label className="mb-3 block text-black dark:text-white">
+                    SEO Meta Description
+                  </label>
+                  <textarea name="" className="inputclass" id=""></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-1/4 ">
+            <div className="sectionbg">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Publish Product
+                </h3>
+              </div>
+            </div>
+            <div className="sectionbg">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Messuarment Chart
+                </h3>
+              </div>
+              <div className="py-4 px-6.5 border-b border-stroke">
+                <Controller
+                  name="division"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <ReactSelect
+                      {...field}
+                      options={divisions}
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderColor: state.isFocused ? 'black' : 'grey',
+                        }),
+                      }}
+                      theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 5,
+                        colors: {
+                          ...theme.colors,
+                          primary: 'black',
+                        },
+                      })}
+                      placeholder="Division"
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption);
+                        handleDivisionChange(selectedOption);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />
+              </div>
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Select brand
+                </h3>
+              </div>
+
+              <div className="py-4 px-6.5 border-b border-stroke">
+                <Controller
+                  name="division"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <ReactSelect
+                      {...field}
+                      options={divisions}
+                      styles={{
+                        control: (baseStyles, state) => ({
+                          ...baseStyles,
+                          borderColor: state.isFocused ? 'black' : 'grey',
+                        }),
+                      }}
+                      theme={(theme) => ({
+                        ...theme,
+                        borderRadius: 5,
+                        colors: {
+                          ...theme.colors,
+                          primary: 'black',
+                        },
+                      })}
+                      placeholder="Division"
+                      onChange={(selectedOption) => {
+                        field.onChange(selectedOption);
+                        handleDivisionChange(selectedOption);
+                      }}
+                      value={field.value}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Select Category
+                </h3>
+              </div>
+
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Select Tag
+                </h3>
               </div>
             </div>
           </div>
