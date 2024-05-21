@@ -18,6 +18,7 @@ import Coupon from './pages/Coupon';
 import Product from './pages/Product';
 import ProductCreate from './pages/ProductCreate';
 import SubCategories from './pages/SubCategories';
+import Appearence from './pages/Appearence/Appearence';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -51,6 +52,15 @@ function App() {
             <>
               <PageTitle title="eCommerce Dashboard Admin " />
               <ECommerce />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard/appearence"
+          element={
+            <>
+              <PageTitle title="Website Appearence" />
+              <Appearence />
             </>
           }
         />
