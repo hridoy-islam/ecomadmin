@@ -10,7 +10,9 @@ import 'react-quill/dist/quill.snow.css';
 import axiosInstance from '../../axios';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { IoMdArrowBack } from 'react-icons/io';
+import { IoMdArrowBack, IoMdCloseCircle } from 'react-icons/io';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import dummy from '../../../public/dummy.jpeg';
 
 import SelectOption from '../SelectOption/SelectOption';
 import CategoryChecklist from '../Categories/CategoryCheckbox';
@@ -72,48 +74,6 @@ const ProductCreateForm = () => {
       console.error('Error:', error);
     }
   };
-  const [selectedDivision, setSelectedDivision] = useState(null);
-  const [districts, setDistricts] = useState([]);
-  const [upazilas, setUpazilas] = useState([]);
-  const handleDivisionChange = (selectedOption) => {
-    setSelectedDivision(selectedOption);
-    const filteredDistricts = districtsData.filter(
-      (district) => district.division_id === selectedOption.id,
-    );
-    setDistricts(filteredDistricts);
-    // Reset selected district and upazila when division changes
-    setUpazilas([]);
-  };
-
-  const handleDistrictChange = (selectedOption) => {
-    // Filter upazilas based on selected district
-    const filteredUpazilas = upazilasData.filter(
-      (upazila) => upazila.district_id === selectedOption.id,
-    );
-    setUpazilas(filteredUpazilas);
-  };
-  const car_brands = [
-    { value: 'Toyota', label: 'Toyota' },
-    { value: 'Honda', label: 'Honda' },
-    { value: 'Nissan', label: 'Nissan' },
-    { value: 'Suzuki', label: 'Suzuki' },
-    { value: 'Mitsubishi', label: 'Mitsubishi' },
-    { value: 'Hyundai', label: 'Hyundai' },
-    { value: 'Kia', label: 'Kia' },
-    { value: 'Ford', label: 'Ford' },
-    { value: 'Chevrolet', label: 'Chevrolet' },
-    { value: 'Volkswagen', label: 'Volkswagen' },
-    { value: 'Mercedes-Benz', label: 'Mercedes-Benz' },
-    { value: 'BMW', label: 'BMW' },
-    { value: 'Audi', label: 'Audi' },
-    { value: 'Mazda', label: 'Mazda' },
-    { value: 'Lexus', label: 'Lexus' },
-    { value: 'Isuzu', label: 'Isuzu' },
-    { value: 'Proton', label: 'Proton' },
-    { value: 'Tata', label: 'Tata' },
-    { value: 'Mahindra', label: 'Mahindra' },
-    { value: 'Renault', label: 'Renault' },
-  ];
 
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
@@ -176,6 +136,54 @@ const ProductCreateForm = () => {
     }
   }, [url]);
 
+  // Product Variation
+
+  const [variations, setVariations] = useState([]); // Initial variation
+
+  const addVariation = () => {
+    // Add a new variation with default values
+    setVariations([...variations, { id: variations.length + 1 }]);
+  };
+
+  const removeVariation = (id) => {
+    // Remove the variation with the specified ID
+    setVariations(variations.filter((variation) => variation.id !== id));
+  };
+
+  const handleVariationImageChange = (event, index) => {
+    const selectedImage = event.target.files[0];
+    if (selectedImage) {
+      const updatedVariations = [...variations];
+      updatedVariations[index].image = URL.createObjectURL(selectedImage);
+      setVariations(updatedVariations);
+    }
+  };
+
+  const handleVariationRemoveImage = (index) => {
+    const updatedVariations = [...variations];
+    updatedVariations[index].image = null;
+    setVariations(updatedVariations);
+  };
+
+  // Product Image Change
+
+  const [image, setImage] = useState(null);
+
+  const handleImageClick = () => {
+    document.getElementById('imageInput').click();
+  };
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    if (selectedImage) {
+      setImage(URL.createObjectURL(selectedImage));
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImage(null);
+  };
+
   return (
     <>
       <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -234,40 +242,111 @@ const ProductCreateForm = () => {
             </div>
 
             <div className="sectionbg my-2">
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between">
                 <h3 className="font-medium text-black dark:text-white">
                   Product Varient
                 </h3>
+                <button className="buttonclass" onClick={addVariation}>
+                  Add New
+                </button>
               </div>
-              <div className="flex py-4 px-6.5">
-                <div className="grid grid-cols-6 gap-1">
-                  <Controller
-                    name="Size"
-                    control={control}
-                    render={({ field }) => (
-                      <SelectOption
-                        dataType="sizes"
+              <div className="flex flex-col py-4 px-6.5">
+                {variations.map((variation, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 relative border border-stroke my-2"
+                  >
+                    <div>
+                      <label
+                        htmlFor={`imageInput_${index}`}
+                        className="cursor-pointer"
+                      >
+                        {variation.image ? (
+                          <img
+                            src={variation.image}
+                            alt=""
+                            className="w-48 h-42"
+                          />
+                        ) : (
+                          <img src={dummy} alt="as" className="w-48 h-42" />
+                        )}
+                      </label>
+                      <input
+                        type="file"
+                        id={`imageInput_${index}`}
+                        className="hidden"
+                        onChange={(event) =>
+                          handleVariationImageChange(event, index)
+                        }
+                      />
+                      <Controller
+                        name={`variations[${index}].image`}
                         control={control}
+                        defaultValue=""
+                        render={() => null}
+                      />
+                    </div>
+
+                    {variation.image && (
+                      <button
+                        onClick={() => handleVariationRemoveImage(index)}
+                        className="absolute top-0 left-0 bg-red-500 text-white px-2 py-1 rounded"
+                        type="button"
+                      >
+                        Remove
+                      </button>
+                    )}
+
+                    {/* ===== */}
+
+                    <div className="grid grid-cols-2 gap-4 py-2">
+                      <Controller
                         name="Size"
-                      />
-                    )}
-                  />
-                  <Controller
-                    name="Color"
-                    control={control}
-                    render={({ field }) => (
-                      <SelectOption
-                        dataType="colors"
                         control={control}
-                        name="Color"
+                        render={({ field }) => (
+                          <SelectOption
+                            dataType="sizes"
+                            control={control}
+                            name="Size"
+                          />
+                        )}
                       />
-                    )}
-                  />
-                  <input type="text" className="border-b" placeholder="SKU" />{' '}
-                  <input type="text" className="border-b" placeholder="Stock" />
-                  <input type="text" className="border-b" placeholder="price" />
-                  <input type="file" className="" />
-                </div>
+                      <Controller
+                        name="Color"
+                        control={control}
+                        render={({ field }) => (
+                          <SelectOption
+                            dataType="colors"
+                            control={control}
+                            name="Color"
+                          />
+                        )}
+                      />
+                      <input
+                        type="text"
+                        className="border-b focus:outline-none"
+                        placeholder="Price"
+                      />
+                      <input
+                        type="text"
+                        className="border-b  focus:outline-none"
+                        placeholder="Stock"
+                      />
+                      <input
+                        type="text"
+                        className="border-b  focus:outline-none"
+                        placeholder="SKU"
+                      />
+                    </div>
+
+                    <button
+                      onClick={() => removeVariation(variation.id)}
+                      className="absolute top-0 right-0 mt-2 mr-2 text-meta-1 border border-meta-1 p-2 rounded"
+                    >
+                      <FaRegTrashAlt />
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="sectionbg my-2">
@@ -331,13 +410,51 @@ const ProductCreateForm = () => {
           </div>
           <div className="w-1/4 ">
             <div className="sectionbg">
-              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
-                <h3 className="font-medium text-black dark:text-white">
+              <div className=" border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-end">
+                <h3 className="bg-meta-3 px-4 py-3 rounded-md cursor-pointer text-lg text-center shadow-2xl font-medium text-black dark:text-white">
                   Publish Product
                 </h3>
               </div>
             </div>
             <div className="sectionbg">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Product Image
+                </h3>
+              </div>
+              <div className="relative">
+                <input
+                  type="file"
+                  id="imageInput"
+                  className="hidden"
+                  {...register('image')}
+                  onChange={handleImageChange}
+                />
+                {image ? (
+                  <img
+                    src={image}
+                    alt="Product"
+                    className="cursor-pointer"
+                    onClick={handleImageClick}
+                  />
+                ) : (
+                  <img
+                    src={dummy}
+                    alt="Product"
+                    className="cursor-pointer"
+                    onClick={handleImageClick}
+                  />
+                )}
+                {image && (
+                  <button
+                    type="button"
+                    className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded"
+                    onClick={handleRemoveImage}
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
                   Brand
