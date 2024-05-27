@@ -19,21 +19,7 @@ import CategoryChecklist from '../Categories/CategoryCheckbox';
 
 const ProductCreateForm = () => {
   const animatedComponents = makeAnimated();
-  const condition = [
-    { value: 'used', label: 'Used' },
-    { value: 'recondition', label: 'Recondition' },
-  ];
-  const transmition = [
-    { value: 'automatic', label: 'Automatic' },
-    { value: 'manual', label: 'Manual' },
-  ];
-  const fuelType = [
-    { value: 'gas', label: 'Gas' },
-    { value: 'octen', label: 'Octen' },
-    { value: 'petrol', label: 'Petrol' },
-    { value: 'dissel', label: 'Dissel' },
-    { value: 'lpg', label: 'LPG' },
-  ];
+
   const {
     handleSubmit,
     control,
@@ -222,7 +208,50 @@ const ProductCreateForm = () => {
 
                 <div>
                   <label className="mb-3 block text-black dark:text-white">
-                    Details
+                    Short Description
+                  </label>
+
+                  <Controller
+                    name="details"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <ReactQuill
+                        theme="snow"
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-3 block text-black dark:text-white">
+                    Price
+                  </label>
+                  <input
+                    {...register('price', { required: true })}
+                    type="text"
+                    placeholder="Price"
+                    className="inputclass"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-3 block text-black dark:text-white">
+                    Stock
+                  </label>
+                  <input
+                    {...register('stock', { required: true })}
+                    type="text"
+                    placeholder="stock"
+                    className="inputclass"
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-3 block text-black dark:text-white">
+                    Long Description
                   </label>
 
                   <Controller
@@ -242,9 +271,21 @@ const ProductCreateForm = () => {
             </div>
 
             <div className="sectionbg my-2">
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Product Gallery
+                </h3>
+              </div>
+
+              <div className="py-4 px-6.5">
+                <input type="file" id="imageInput" />
+              </div>
+            </div>
+
+            <div className="sectionbg my-2">
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-between">
                 <h3 className="font-medium text-black dark:text-white">
-                  Product Varient
+                  Product Variation
                 </h3>
                 <button className="buttonclass" onClick={addVariation}>
                   Add New
@@ -411,9 +452,7 @@ const ProductCreateForm = () => {
           <div className="w-1/4 ">
             <div className="sectionbg">
               <div className=" border-b border-stroke py-4 px-6.5 dark:border-strokedark flex justify-end">
-                <h3 className="bg-meta-3 px-4 py-3 rounded-md cursor-pointer text-lg text-center shadow-2xl font-medium text-black dark:text-white">
-                  Publish Product
-                </h3>
+                <h3 className="buttonclass">Publish Product</h3>
               </div>
             </div>
             <div className="sectionbg">
@@ -473,41 +512,21 @@ const ProductCreateForm = () => {
                   )}
                 />
               </div>
+
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Select brand
+                  Main Category
                 </h3>
               </div>
-
-              <div className="py-4 px-6.5 border-b border-stroke">
+              <div className="py-4 px-6.5 ">
                 <Controller
-                  name="division"
+                  name="categories"
                   control={control}
-                  defaultValue=""
                   render={({ field }) => (
-                    <ReactSelect
-                      {...field}
-                      options={divisions}
-                      styles={{
-                        control: (baseStyles, state) => ({
-                          ...baseStyles,
-                          borderColor: state.isFocused ? 'black' : 'grey',
-                        }),
-                      }}
-                      theme={(theme) => ({
-                        ...theme,
-                        borderRadius: 5,
-                        colors: {
-                          ...theme.colors,
-                          primary: 'black',
-                        },
-                      })}
-                      placeholder="Division"
-                      onChange={(selectedOption) => {
-                        field.onChange(selectedOption);
-                        handleDivisionChange(selectedOption);
-                      }}
-                      value={field.value}
+                    <SelectOption
+                      dataType="categories"
+                      control={control}
+                      name="categories"
                     />
                   )}
                 />
@@ -515,15 +534,46 @@ const ProductCreateForm = () => {
 
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Select Category
+                  Sub Category
                 </h3>
               </div>
-              <CategoryChecklist />
+              <div className="py-4 px-6.5 ">
+                <Controller
+                  name="Sub Category"
+                  control={control}
+                  render={({ field }) => (
+                    <SelectOption
+                      dataType="categories"
+                      control={control}
+                      name="categories"
+                    />
+                  )}
+                />
+              </div>
 
               <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
                   Select Tag
                 </h3>
+              </div>
+
+              <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  Size Chart
+                </h3>
+              </div>
+              <div className="py-4 px-6.5 ">
+                <Controller
+                  name="sizechart"
+                  control={control}
+                  render={({ field }) => (
+                    <SelectOption
+                      dataType="categories"
+                      control={control}
+                      name="categories"
+                    />
+                  )}
+                />
               </div>
             </div>
           </div>

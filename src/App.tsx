@@ -23,6 +23,8 @@ import Customer from './pages/Customer/Customer';
 import CustomerDetail from './pages/Customer/CustomerDetail';
 import Slider from './pages/Appearence/Slider';
 import Measurement from './pages/Measurement/Measurement';
+import Order from './pages/Order/Order';
+import Report from './pages/Report/Report';
 
 const routeConfigs = [
   { path: '/', component: SignIn, title: 'Admin' },
@@ -30,6 +32,16 @@ const routeConfigs = [
     path: 'dashboard',
     component: ECommerce,
     title: 'eCommerce Dashboard Admin',
+  },
+  {
+    path: 'dashboard/orders',
+    component: Order,
+    title: 'Orders',
+  },
+  {
+    path: 'dashboard/reports',
+    component: Report,
+    title: 'Reports',
   },
   { path: 'dashboard/customer', component: Customer, title: 'Customer' },
   {

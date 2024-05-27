@@ -141,6 +141,56 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
               {/* <!-- Menu Item Calendar --> */}
+
+              {/* <!-- Menu Sales --> */}
+              <SidebarLinkGroup
+                activeCondition={
+                  pathname === '/orders' || pathname.includes('/orders')
+                }
+              >
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="/dashboard/orders"
+                        className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                          (pathname === '/orders' ||
+                            pathname.includes('/orders')) &&
+                          'bg-graydark dark:bg-meta-4'
+                        }`}
+                      >
+                        <FaRegUser />
+                        Orders
+                      </NavLink>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
+
+              <SidebarLinkGroup
+                activeCondition={
+                  pathname === '/reports' || pathname.includes('/reports')
+                }
+              >
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="/dashboard/reports"
+                        className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                          (pathname === '/reports' ||
+                            pathname.includes('/reports')) &&
+                          'bg-graydark dark:bg-meta-4'
+                        }`}
+                      >
+                        <FaRegUser />
+                        Reports
+                      </NavLink>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
+
               {/* <!-- Menu Sales --> */}
               <SidebarLinkGroup
                 activeCondition={
