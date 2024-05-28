@@ -16,7 +16,7 @@ const CouponList = () => {
 
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/coupons?page=${page}&limit=${entriesPerPage}`;
+      let url = `/coupons?page=${page}&limit=${entriesPerPage}&sortBy=`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;

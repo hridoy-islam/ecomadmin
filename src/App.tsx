@@ -10,13 +10,12 @@ import FormElements from './pages/Form/FormElements';
 import SignIn from './pages/Authentication/SignIn';
 import Contact from './pages/Contact';
 import Brand from './pages/Brand';
-import Categories from './pages/Categories';
+import Categories from './pages/Categories/Categories';
 import Size from './pages/Size';
 import Color from './pages/Color';
-import Coupon from './pages/Coupon';
+import Coupon from './pages/Coupon/Coupon';
 import Product from './pages/Product/Product';
 import ProductCreate from './pages/ProductCreate';
-import SubCategories from './pages/SubCategories';
 import Appearence from './pages/Appearence/Appearence';
 
 import Customer from './pages/Customer/Customer';
@@ -25,6 +24,11 @@ import Slider from './pages/Appearence/Slider';
 import Measurement from './pages/Measurement/Measurement';
 import Order from './pages/Order/Order';
 import Report from './pages/Report/Report';
+import CouponCreate from './pages/Coupon/CouponCreate';
+import MeasurementCreate from './pages/Measurement/MeasurementCreate';
+import CategoriesCreate from './pages/Categories/CategoriesCreate';
+import SubCategory from './pages/Categories/SubCategory';
+import SubCategoryCreate from './pages/Categories/SubCategoryCreate';
 
 const routeConfigs = [
   { path: '/', component: SignIn, title: 'Admin' },
@@ -79,21 +83,41 @@ const routeConfigs = [
   {
     path: 'dashboard/categories',
     component: Categories,
-    title: 'Category List',
+    title: 'Parent Category List',
+  },
+  {
+    path: 'dashboard/categories/create',
+    component: CategoriesCreate,
+    title: 'Create Parent Category ',
   },
   {
     path: 'dashboard/categories/child',
-    component: SubCategories,
+    component: SubCategory,
     title: 'Sub Category List',
+  },
+  {
+    path: 'dashboard/categories/child/create',
+    component: SubCategoryCreate,
+    title: 'Sub Category Create',
   },
   { path: 'dashboard/size', component: Size, title: 'Size List' },
   { path: 'dashboard/color', component: Color, title: 'Color List' },
   { path: 'dashboard/coupon', component: Coupon, title: 'Coupon List' },
+  {
+    path: 'dashboard/coupon/create',
+    component: CouponCreate,
+    title: 'Create Coupon',
+  },
   { path: 'dashboard/contact', component: Contact, title: 'Contact Form' },
   {
     path: 'dashboard/measurement',
     component: Measurement,
     title: 'Measurement Chart',
+  },
+  {
+    path: 'dashboard/measurement/create',
+    component: MeasurementCreate,
+    title: 'Create Measurement Chart',
   },
   {
     path: 'dashboard/forms/form-elements',

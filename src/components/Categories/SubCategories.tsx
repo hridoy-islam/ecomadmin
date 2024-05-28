@@ -103,7 +103,7 @@ const SubCategoryList = () => {
     <>
       <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <Link
-          to="/dashboard/categories/create"
+          to="/dashboard/categories/child/create"
           className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
         >
           Add New

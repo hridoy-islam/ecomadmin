@@ -5,6 +5,8 @@ import { SearchFilter } from '../SearchFilter/SearchFilter';
 import ConfirmModal from '../Modal/ConfirmModal';
 import { Link } from 'react-router-dom';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const ColorList = () => {
   const [colors, setColors] = useState([]);
@@ -97,12 +99,40 @@ const ColorList = () => {
     setModalData(id);
   };
 
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm(); // Initialize the form
+  const onSubmit = async (data) => {
+    try {
+      const response = await axiosInstance.post('/colors', data);
+      if (response.data.success) {
+        toast.success('Color Created successfully');
+        reset();
+        fetchData(currentPage, entriesPerPage, searchTerm);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message.name);
+    }
+  };
+
   return (
     <>
       <div className="flex gap-4 ">
         <div className="w-1/3 h-32 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-          <form action="" className="p-4 space-y-3">
-            <input type="text" placeholder="Color" className="inputclass" />
+          <form
+            action=""
+            className="p-4 space-y-3"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <input
+              {...register('name', { required: true })}
+              type="text"
+              placeholder="Color"
+              className="inputclass"
+            />
             <button type="submit" className="buttonclass">
               Add New
             </button>
