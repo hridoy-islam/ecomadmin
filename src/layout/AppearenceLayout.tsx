@@ -6,6 +6,8 @@ export const AppearenceLayout = ({ children }) => {
   const links = [
     { path: '/dashboard/appearence', label: 'General' },
     { path: '/dashboard/appearence/slider', label: 'Slider' },
+    { path: '/dashboard/appearence/payment', label: 'Payment API' },
+    { path: '/dashboard/appearence/curiour', label: 'Curiour API' },
   ];
   return (
     <div className="flex gap-3">
@@ -14,7 +16,11 @@ export const AppearenceLayout = ({ children }) => {
           {links.map((link, index) => (
             <Link
               key={index}
-              className={`px-3 py-4 font-semibold  ${pathname === link.path ? 'bg-secondary text-white' : 'bg-bodydark1 text-black'}`}
+              className={`px-3 py-4 font-semibold  ${
+                pathname === link.path
+                  ? 'bg-secondary text-white'
+                  : 'bg-bodydark1 text-black'
+              }`}
               to={link.path}
             >
               {link.label}

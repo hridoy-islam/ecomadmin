@@ -29,6 +29,8 @@ import MeasurementCreate from './pages/Measurement/MeasurementCreate';
 import CategoriesCreate from './pages/Categories/CategoriesCreate';
 import SubCategory from './pages/Categories/SubCategory';
 import SubCategoryCreate from './pages/Categories/SubCategoryCreate';
+import Payment from './pages/Appearence/Payment';
+import Curiour from './pages/Appearence/Curiour';
 
 const routeConfigs = [
   { path: '/', component: SignIn, title: 'Admin' },
@@ -57,6 +59,16 @@ const routeConfigs = [
     path: 'dashboard/appearence/slider',
     component: Slider,
     title: 'Website Slider',
+  },
+  {
+    path: 'dashboard/appearence/payment',
+    component: Payment,
+    title: 'Payment API',
+  },
+  {
+    path: 'dashboard/appearence/curiour',
+    component: Curiour,
+    title: 'Curiour API',
   },
   {
     path: 'dashboard/customer/detail/:id',
