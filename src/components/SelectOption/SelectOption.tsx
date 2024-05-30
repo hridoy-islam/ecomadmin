@@ -4,10 +4,12 @@ import axiosInstance from '../../axios';
 const SelectOption = ({ dataType, control, name }) => {
   const loadOptions = async (inputValue) => {
     try {
-      const response = await axiosInstance.get(`/${dataType}?searchTerm=${inputValue}`);
-      const data = response.data.data.result.map(item => ({
+      const response = await axiosInstance.get(
+        `/${dataType}?searchTerm=${inputValue}`,
+      );
+      const data = response.data.data.result.map((item) => ({
         value: item.id,
-        label: item.name
+        label: item.name,
       }));
       return data;
     } catch (error) {
@@ -27,12 +29,9 @@ const SelectOption = ({ dataType, control, name }) => {
       isClearable
       cacheOptions
       onChange={(selectedOption) => {
-        
-        control.onChange(selectedOption);
-
-        handleChange(selectedOption);
+        console.log(selectedOption.label);
+        //handleChange(selectedOption);
       }}
-      
     />
   );
 };

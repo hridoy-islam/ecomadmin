@@ -10,13 +10,16 @@ import { CiLogout } from 'react-icons/ci';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/user/UserSlice';
 
-import { MdDashboard } from 'react-icons/md';
+import { MdDashboard, MdOutlineShoppingCart } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa6';
 import { IoShirt } from 'react-icons/io5';
 import { MdOutlineLabelImportant } from 'react-icons/md';
 import { RiNotificationBadgeFill } from 'react-icons/ri';
 import { IoMdResize, IoIosColorPalette } from 'react-icons/io';
 import { RiCoupon2Fill } from 'react-icons/ri';
+import { TbReport } from 'react-icons/tb';
+import { HiColorSwatch } from 'react-icons/hi';
+import { TbRulerMeasure } from 'react-icons/tb';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -137,7 +140,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   }`}
                 >
                   <MdDashboard />
-                  dashboard
+                  Dashboard
                 </NavLink>
               </li>
               {/* <!-- Menu Item Calendar --> */}
@@ -159,7 +162,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           'bg-graydark dark:bg-meta-4'
                         }`}
                       >
-                        <FaRegUser />
+                        <MdOutlineShoppingCart />
                         Orders
                       </NavLink>
                     </React.Fragment>
@@ -183,7 +186,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           'bg-graydark dark:bg-meta-4'
                         }`}
                       >
-                        <FaRegUser />
+                        <TbReport />
                         Reports
                       </NavLink>
                     </React.Fragment>
@@ -208,7 +211,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           'bg-graydark dark:bg-meta-4'
                         }`}
                       >
-                        <FaRegUser />
+                        <HiColorSwatch />
                         Appearence
                       </NavLink>
                     </React.Fragment>
@@ -421,7 +424,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           'bg-graydark dark:bg-meta-4'
                         }`}
                       >
-                        <IoMdResize />
+                        <TbRulerMeasure />
                         Measurement
                       </NavLink>
                     </React.Fragment>

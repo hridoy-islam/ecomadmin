@@ -8,9 +8,11 @@ import ViewModal from '../Modal/ViewModal';
 import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { CgEye } from 'react-icons/cg';
+import * as XLSX from 'xlsx';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [exporting, setExporting] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -100,15 +102,101 @@ const ProductList = () => {
     setModalData(id);
   };
 
+  // const handleExport = async () => {
+  //   setExporting(true);
+  //   try {
+  //     const response = await axiosInstance.get(
+  //       '/products?limit=all&sortBy=id&sortDirection=asc',
+  //     );
+  //     const products = response.data.data.result; // Assuming the response is an array of product objects
+
+  //     const headers = Object.keys(products[0]).join(',') + '\n';
+  //     // Convert products to CSV format
+  //     const csvContent =
+  //       headers +
+  //       products.map((product) => Object.values(product).join(',')).join('\n');
+
+  //     // Create a Blob containing the CSV data
+  //     const blob = new Blob([csvContent], { type: 'text/csv' });
+
+  //     // Create a URL for the Blob
+  //     const url = window.URL.createObjectURL(blob);
+
+  //     // Create a link element to trigger the download
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.setAttribute('download', 'products.csv');
+
+  //     // Append the link to the document and trigger the download
+  //     document.body.appendChild(link);
+  //     link.click();
+
+  //     // Clean up
+  //     document.body.removeChild(link);
+  //     window.URL.revokeObjectURL(url);
+  //   } catch (error) {
+  //     console.error('Error exporting bulk products:', error);
+  //     alert('Failed to export bulk products.');
+  //   } finally {
+  //     setExporting(false);
+  //   }
+  // };
+
+  const handleExport = async () => {
+    setExporting(true);
+    try {
+      const response = await axiosInstance.get(
+        '/products?limit=all&sortBy=id&sortDirection=asc',
+      );
+      const products = response.data.data.result; // Assuming the response is an array of product objects
+
+      // Convert products to worksheet
+      const worksheet = XLSX.utils.json_to_sheet(products);
+
+      // Get the range of headers
+      const headersRange = XLSX.utils.decode_range(worksheet['!ref']);
+      const headers = [];
+      for (let col = headersRange.s.c; col <= headersRange.e.c; col++) {
+        const header = XLSX.utils.encode_cell({ r: headersRange.s.r, c: col });
+        headers.push(header);
+      }
+
+      // Apply bold font style to headers
+      headers.forEach((header) => {
+        const cell = worksheet[header];
+        cell.s = { font: { bold: true } };
+      });
+
+      // Create a new workbook
+      const workbook = XLSX.utils.book_new();
+
+      // Add worksheet to workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+
+      // Save workbook to file
+      XLSX.writeFile(workbook, 'products.xlsx');
+    } catch (error) {
+      console.error('Error exporting bulk products:', error);
+      alert('Failed to export bulk products.');
+    } finally {
+      setExporting(false);
+    }
+  };
+
   return (
     <>
-      <div className="rounded-sm my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <Link
-          to="/dashboard/product/create"
-          className="inline-flex items-center justify-center bg-secondary py-2 px-5 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-        >
+      <div className="rounded-sm flex gap-2  my-5 px-5 py-3 border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <Link to="/dashboard/product/create" className="buttonclass">
           Add New
         </Link>
+        <button className="buttonclass ">Import Products</button>
+        <button
+          className="buttonclass"
+          onClick={handleExport}
+          disabled={exporting}
+        >
+          {exporting ? 'Exporting...' : 'Export'}
+        </button>
       </div>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <SearchFilter
