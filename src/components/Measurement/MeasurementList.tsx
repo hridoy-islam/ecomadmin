@@ -6,7 +6,7 @@ import { SearchFilter } from '../SearchFilter/SearchFilter';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
 const MeasurementList = () => {
-  const [size, setSize] = useState([]);
+  const [measurements, setMeasurements] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,14 +62,14 @@ const MeasurementList = () => {
 
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/sizes?page=${page}&limit=${entriesPerPage}`;
+      let url = `/measurements?page=${page}&limit=${entriesPerPage}`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;
       }
 
       const response = await axiosInstance.get(url);
-      setSize(response.data.data.result);
+      setMeasurements(response.data.data.result);
       setTotalPages(response.data.data.meta.totalPage);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -103,17 +103,20 @@ const MeasurementList = () => {
           onSearch={handleSearch}
           onEntriesPerPageChange={handleEntriesPerPageChange}
         />
-        <div className="grid grid-cols-5 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Name</p>
+          </div>
           <div className="col-span-1 flex items-center">
             <p className="font-medium">Size</p>
           </div>
-          <div className="col-span-2 flex items-center">
+          <div className="col-span-1 flex items-center">
             <p className="font-medium">Cheast </p>
           </div>
-          <div className="col-span-2 flex items-center">
+          <div className="col-span-1 flex items-center">
             <p className="font-medium">Length</p>
           </div>
-          <div className="col-span-2 flex items-center">
+          <div className="col-span-1 flex items-center">
             <p className="font-medium">Sleeve</p>
           </div>
 
@@ -122,22 +125,29 @@ const MeasurementList = () => {
           </div>
         </div>
 
-        {size.map((item, key) => (
+        {measurements.map((item, key) => (
           <div
-            className="grid grid-cols-5 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
             key={key}
           >
             <div className="col-span-1 hidden items-center sm:flex">
               <p className="text-sm text-black dark:text-white">{item.name}</p>
             </div>
-            <div className="col-span-2 hidden items-center sm:flex">
-              <p className="text-sm text-black dark:text-white">{item.name}</p>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.size}</p>
             </div>
-            <div className="col-span-2 hidden items-center sm:flex">
-              <p className="text-sm text-black dark:text-white">{item.name}</p>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.chest}</p>
             </div>
-            <div className="col-span-2 hidden items-center sm:flex">
-              <p className="text-sm text-black dark:text-white">{item.name}</p>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">
+                {item.length}
+              </p>
+            </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">
+                {item.sleeve}
+              </p>
             </div>
 
             <div className="col-span-1 flex items-center space-x-2">

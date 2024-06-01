@@ -207,15 +207,20 @@ const ProductList = () => {
           <div className="col-span-1 flex items-center">
             <p className="font-medium">Product Name</p>
           </div>
-          <div className="col-span-1 flex items-center">
-            <p className="font-medium">Thumbnail</p>
-          </div>
+
           <div className="col-span-1 flex items-center">
             <p className="font-medium">Category</p>
           </div>
 
           <div className="col-span-1 flex items-center">
             <p className="font-medium">Brand</p>
+          </div>
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Price</p>
+          </div>
+
+          <div className="col-span-1 flex items-center">
+            <p className="font-medium">Total Stock</p>
           </div>
 
           <div className="col-span-1 flex items-center">
@@ -231,10 +236,7 @@ const ProductList = () => {
             <div className="col-span-1 hidden items-center sm:flex">
               <p className="text-sm text-black dark:text-white">{item.name}</p>
             </div>
-            <div className="col-span-1 hidden items-center sm:flex">
-              <img src={item.image_gallery[0]} alt="" />
-              Thumbnail Will come
-            </div>
+
             <div className="col-span-1 hidden items-center sm:flex">
               <p className="text-sm text-black dark:text-white">
                 {item.category.name}
@@ -245,6 +247,14 @@ const ProductList = () => {
                 {item.brand.name}
               </p>
             </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">{item.price}</p>
+            </div>
+            <div className="col-span-1 hidden items-center sm:flex">
+              <p className="text-sm text-black dark:text-white">
+                {item.totalstock}
+              </p>
+            </div>
 
             <div className="col-span-1 flex items-center space-x-2">
               <p
@@ -252,6 +262,10 @@ const ProductList = () => {
                 onClick={() => handleStatus(item._id)}
               >
                 <TiTick />
+              </p>
+
+              <p>
+                <Link to={`/dashboard/product/edit/${item.id}`}>Edit</Link>
               </p>
 
               <p className="text-sm text-meta-7">

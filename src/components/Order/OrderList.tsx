@@ -28,7 +28,7 @@ const OrderList = () => {
   };
 
   const handleConfirm = async () => {
-    const res = await axiosInstance.patch(`/user/${modalData}`, {
+    const res = await axiosInstance.patch(`/orders/${modalData}`, {
       status: 'block',
     });
     if (res.data.success) {
@@ -52,7 +52,7 @@ const OrderList = () => {
   };
 
   const handleApproveConfirm = async () => {
-    const res = await axiosInstance.patch(`/user/${modalData}`, {
+    const res = await axiosInstance.patch(`/orders/${modalData}`, {
       status: 'active',
     });
     if (res.data.success) {
@@ -63,7 +63,7 @@ const OrderList = () => {
 
   const fetchData = async (page, entriesPerPage, searchTerm = '') => {
     try {
-      let url = `/user?role=user&page=${page}&limit=${entriesPerPage}`;
+      let url = `/orders?&page=${page}&limit=${entriesPerPage}`;
       // Check if searchTerm is not empty before adding to the URL
       if (searchTerm.trim() !== '') {
         url += `&searchTerm=${searchTerm}`;

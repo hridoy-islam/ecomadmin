@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import axiosInstance from '../../axios.js';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 type Inputs = {
   email: string;
@@ -10,6 +11,7 @@ type Inputs = {
   password?: string;
 };
 const CustomerEditForm = ({ userData }) => {
+  const [userDetails, setUserDetails] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
   const {
@@ -30,6 +32,21 @@ const CustomerEditForm = ({ userData }) => {
     }
   };
 
+  const fetchData = async () => {
+    try {
+      let url = `/user?id=${id}`;
+      const response = await axiosInstance.get(url);
+      setUserDetails(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
   return (
     <div className="grid grid-cols-1 gap-9 sm:grid-cols-2">
       <div className="flex flex-col gap-9">
@@ -47,10 +64,10 @@ const CustomerEditForm = ({ userData }) => {
                   Name
                 </label>
                 <input
+                  defaultValue={userData?.name}
                   type="text"
                   {...register('name', { required: true })}
                   placeholder="Name"
-                  defaultValue={userData?.name}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
                 {errors.name && <span>Name is required</span>}
@@ -63,7 +80,6 @@ const CustomerEditForm = ({ userData }) => {
                   type="email"
                   {...register('email', { required: true })}
                   placeholder="Email"
-                  defaultValue={userData?.email}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
                 {errors.email && <span>Email is required</span>}
@@ -80,7 +96,6 @@ const CustomerEditForm = ({ userData }) => {
                     minLength: 11,
                   })}
                   placeholder="Phone"
-                  defaultValue={userData?.phone}
                   className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
                 {errors.phone && (

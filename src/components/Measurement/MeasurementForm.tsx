@@ -13,9 +13,9 @@ export const MeasurementForm = () => {
   } = useForm(); // Initialize the form
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post('/chart', data);
+      const response = await axiosInstance.post('/measurements', data);
       if (response.data.success) {
-        toast.success('Chart Created successfully');
+        toast.success('Measurements Created successfully');
         reset();
       }
     } catch (error) {
